@@ -29,7 +29,9 @@ namespace DataStructuresToolkit.StacksQueues
         // Complexity Time O(1) amortized and Space O(1) amortized
         public void Push(T item)
         {
-            throw new NotImplementedException();
+            EnsureCapacityForOneMore();
+            _items[_count] = item;
+            _count++;
         }
 
         // Complexity Time O(1) and Space O(1)
@@ -38,6 +40,7 @@ namespace DataStructuresToolkit.StacksQueues
             throw new NotImplementedException();
         }
 
+        // Complexity Time O(1) and Space O(1)
         private void EnsureCapacityForOneMore()
         {
             if (_count < _items.Length)
