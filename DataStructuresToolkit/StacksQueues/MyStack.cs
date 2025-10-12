@@ -21,6 +21,7 @@ namespace DataStructuresToolkit.StacksQueues
             _count = 0;
         }
 
+        // Complexity Time O(1) and Space O(1)
         public int Count
         {
             get { return _count; }
@@ -37,10 +38,17 @@ namespace DataStructuresToolkit.StacksQueues
         // Complexity Time O(1) and Space O(1)
         public T Peek()
         { 
-            throw new NotImplementedException();
+            if (_count == 0)
+            {
+                throw new InvalidOperationException("Stack is empty.");
+            }
+
+            return _items[_count - 1];
         }
 
-        // Complexity Time O(1) and Space O(1)
+        // Complexity Time O(1) and Space O(1) if capacity available
+        // Complexity Time O(n) and Space O(n) if resizing needed
+        // Amortized effect on Push remains O(1) time and O(1) space
         private void EnsureCapacityForOneMore()
         {
             if (_count < _items.Length)
