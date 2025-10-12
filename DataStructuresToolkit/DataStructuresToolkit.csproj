@@ -44,6 +44,8 @@
     <Compile Include="ArrayStringListHelpers.cs" />
     <Compile Include="ComplexityTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StacksQueues\MyQueue.cs" />
+    <Compile Include="StacksQueues\MyStack.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
