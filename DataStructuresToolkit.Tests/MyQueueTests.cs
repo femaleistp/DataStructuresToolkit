@@ -20,5 +20,22 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(2, q.Count);
             Assert.Equal(10, q.Peek());
         }
+
+        // Test to ensure Dequeue returns the first item and decreases the count
+        // This verifies the FIFO behavior of the queue
+        [Fact]
+        public void Dequeue_ReturnsFirst_And_DecreasesCount()
+        { 
+            // Arrange
+            var q = new MyQueue<string>();
+            q.Enqueue("A");
+            q.Enqueue("B");
+            // Act
+            string first = q.Dequeue();
+            // Assert
+            Assert.Equal("A", first);
+            Assert.Equal(1, q.Count);
+            Assert.Equal("B", q.Peek());
+        }
     }
 }
