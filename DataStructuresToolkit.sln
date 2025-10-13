@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructuresToolkit", "DataStructuresToolkit\DataStructuresToolkit.csproj", "{477BDED9-4588-4320-8C0F-FB09C0603601}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructuresToolkit.Tests", "DataStructuresToolkit.Tests\DataStructuresToolkit.Tests.csproj", "{65CAAA27-7FEB-499C-BE07-2E4F8C9D64C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoHarness", "DemoHarness\DemoHarness.csproj", "{C9304500-7EE9-404B-A918-813DA5799A55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{65CAAA27-7FEB-499C-BE07-2E4F8C9D64C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65CAAA27-7FEB-499C-BE07-2E4F8C9D64C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65CAAA27-7FEB-499C-BE07-2E4F8C9D64C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9304500-7EE9-404B-A918-813DA5799A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9304500-7EE9-404B-A918-813DA5799A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9304500-7EE9-404B-A918-813DA5799A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9304500-7EE9-404B-A918-813DA5799A55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
