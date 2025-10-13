@@ -46,6 +46,19 @@ namespace DataStructuresToolkit.StacksQueues
             return _items[_count - 1];
         }
 
+        public T Pop()
+        {
+            if (_count == 0)
+            {
+                throw new InvalidOperationException("Stack is empty.");
+            }
+            int topIndex = _count - 1;
+            T value = _items[topIndex];
+            _items[topIndex] = default(T); // Clear reference
+            _count = topIndex;
+            return value;
+        }
+
         // Complexity Time O(1) and Space O(1) if capacity available
         // Complexity Time O(n) and Space O(n) if resizing needed
         // Amortized effect on Push remains O(1) time and O(1) space
