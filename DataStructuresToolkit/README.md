@@ -36,4 +36,4 @@ I tested them with xUnit and made a demo to show how they work.
 
 ## What I learned
 I learned how stacks and queues work and how to resize arrays.  
-The demo helped me understand the difference between LIFO and FIFO.
+The demo helped me understand the difference between LIFO and FIFO.I also practiced writing tests with xUnit to make sure everything works.I practiced working between multiple classes and projects in one solution.I also improved my debugging skills by fixing issues in my code.
