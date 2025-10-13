@@ -2,14 +2,15 @@
 
 namespace DataStructuresToolkit.StacksQueues
 {
-    /// <summary>
-    /// Generic stack with array-backed storage and doubling policy.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
     public class MyStack<T>
     {
         private T[] _items;
         private int _count;
+        /// <summary>
+        /// Creates a new stack with the given initial capacity.
+        /// </summary>
+        /// <param name="initialCapacity">Starting array size (at least 1)</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when initialCapacity is less than 1.</exception>
         public MyStack(int initialCapacity = 4)
         {
             if (initialCapacity < 1)
@@ -21,13 +22,20 @@ namespace DataStructuresToolkit.StacksQueues
             _count = 0;
         }
 
-        // Complexity Time O(1) and Space O(1)
+        /// <summary>
+        /// Get the numbe rof items currently in the stack.
+        /// </summary>
+        /// <remarks>Time O(1) and space O(1) complexity</remarks>
         public int Count
         {
             get { return _count; }
         }
 
-        // Complexity Time O(1) amortized and Space O(1) amortized
+        /// <summary>
+        /// Pushes an item onto the top of the stack.
+        /// </summary>
+        /// <param name="item">The item to push.</param>
+        /// <remarks>Amortized O(1) time and O(1) space complexity.</remarks>
         public void Push(T item)
         {
             EnsureCapacityForOneMore();
@@ -35,7 +43,12 @@ namespace DataStructuresToolkit.StacksQueues
             _count++;
         }
 
-        // Complexity Time O(1) and Space O(1)
+        /// <summary>
+        /// Returns the item at the top of the stack without removing it.
+        /// </summary>
+        /// <returns>The item currently on the top of the stack.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the stack is empty.</exception>
+        /// <remarks>Runs in O(1) time and O(1) space complexity.</remarks>
         public T Peek()
         { 
             if (_count == 0)
@@ -46,6 +59,12 @@ namespace DataStructuresToolkit.StacksQueues
             return _items[_count - 1];
         }
 
+        /// <summary>
+        /// Removes and returns the item at the top of the stack.
+        /// </summary>
+        /// <returns>The item that was removed from the top of the stack.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the stack is empty.</exception>
+        /// <remarks>Runs in O(1) time and O(1) space complexity.</remarks>
         public T Pop()
         {
             if (_count == 0)
@@ -59,9 +78,6 @@ namespace DataStructuresToolkit.StacksQueues
             return value;
         }
 
-        // Complexity Time O(1) and Space O(1) if capacity available
-        // Complexity Time O(n) and Space O(n) if resizing needed
-        // Amortized effect on Push remains O(1) time and O(1) space
         private void EnsureCapacityForOneMore()
         {
             if (_count < _items.Length)

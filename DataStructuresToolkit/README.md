@@ -34,6 +34,6 @@ I tested them with xUnit and made a demo to show how they work.
 4. 04_week3_console_output_part3_performance.png – performance test  
 5. 05_week3_test_explorer_all_passed.png – all tests passed
 
-## What I learned
+## Reflection
 I learned how stacks and queues work and how to resize arrays.  
-The demo helped me understand the difference between LIFO and FIFO.I also practiced writing tests with xUnit to make sure everything works.I practiced working between multiple classes and projects in one solution.I also improved my debugging skills by fixing issues in my code.
+The demo helped me understand the difference between LIFO and FIFO.I also practiced writing tests with xUnit to make sure everything works.I practiced working between multiple classes and projects in one solution.Better understanding of XML documentation comments for methods and classes.

@@ -2,16 +2,17 @@
 
 namespace DataStructuresToolkit.StacksQueues
 {
-    /// <summary>
-    /// Generic queue with circular array storage and doubling policy.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
     public class MyQueue<T>
     {
         private T[] _items;
         private int _count;
         private int _head;
         private int _tail;
+        /// <summary>
+        /// Creates a new queue with the given initial capacity.
+        /// </summary>
+        /// <param name="initialCapacity">Starting array size (must be at least 1).</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when initialCapacity is less than 1.</exception>
         public MyQueue(int initialCapacity = 4)
         {
             if (initialCapacity < 1)
@@ -24,14 +25,20 @@ namespace DataStructuresToolkit.StacksQueues
             _head = 0;
             _tail = 0;
         }
-        // Complexity time O(1) and space O(1)
+        /// <summary>
+        /// Get the number of items currently in the queue.
+        /// </summary>
+        /// <remarks>Time O(1) and space O(1) complexity</remarks>
         public int Count
         {
             get { return _count; }
         }
 
-        // Complexity time O(1) and space O(1) if space available
-        // Complexity time O(n) and space O(n) if space not available
+        /// <summary>
+        /// Adds an item to the end of the queue.
+        /// </summary>
+        /// <param name="item">The item to add.</param>
+        /// <remarks>Amortized O(1) time using a circular array and O(1) space complexity.</remarks>
         public void Enqueue(T item)
         {
             EnsureCapacityForOneMore();
@@ -44,7 +51,12 @@ namespace DataStructuresToolkit.StacksQueues
             _count++;
         }
 
-        // Complexity time O(1) and space O(1)
+        /// <summary>
+        /// Returns the item at the front of the queue without removing it. 
+        /// </summary>
+        /// <returns>The item currently at the front of the queue.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the queue is empty.</exception>
+        /// <remarks>Runs in O(1) time and O(1) space complexity.</remarks>
         public T Peek()
         { 
             if (_count == 0)
@@ -55,7 +67,12 @@ namespace DataStructuresToolkit.StacksQueues
             return _items[_head];
         }
 
-        // Complexity time O(1) and space O(1)
+        /// <summary>
+        /// Removes and returns the item at the front of the queue.
+        /// </summary>
+        /// <returns>The item that was removed from the front of the queue.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the queue is empty.</exception>
+        /// <remarks>Runs in O(1) time and O(1) space complexity.</remarks>
         public T Dequeue()
         {
             if (_count == 0)
@@ -76,9 +93,6 @@ namespace DataStructuresToolkit.StacksQueues
             return value;
         }
 
-        // If space available, complexity time O(1) and space O(1)
-        // If space not available, complexity time O(n) and space O(n)
-        // Amortized effect on Enqueue remains O(1) time and O(1) space
         private void EnsureCapacityForOneMore()
         {
             if (_count < _items.Length)
@@ -111,7 +125,6 @@ namespace DataStructuresToolkit.StacksQueues
             _items = newArray;
             _head = 0;
             _tail = _count;
-
         }
     }
 }
