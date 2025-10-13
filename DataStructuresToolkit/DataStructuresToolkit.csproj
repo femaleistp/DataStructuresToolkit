@@ -47,5 +47,8 @@
     <Compile Include="StacksQueues\MyQueue.cs" />
     <Compile Include="StacksQueues\MyStack.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
