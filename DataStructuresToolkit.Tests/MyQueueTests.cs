@@ -37,5 +37,20 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(1, q.Count);
             Assert.Equal("B", q.Peek());
         }
+
+        // Test to ensure exceptions are thrown when dequeuing or peeking from an empty queue
+        // This verifies the queue's error handling
+        [Fact]
+        public void Peek_And_Dequeue_OnEmpty_ThrowInvalidOperationException()
+        { 
+            // Arrange
+            var q = new MyQueue<int>();
+            // Act
+            Exception peekEx = Record.Exception(delegate { q.Peek(); });
+            Exception dequeueEx = Record.Exception(delegate { q.Dequeue(); });
+            // Assert
+            Assert.IsType<InvalidOperationException>(peekEx);
+            Assert.IsType<InvalidOperationException>(dequeueEx);
+        }
     }
 }
