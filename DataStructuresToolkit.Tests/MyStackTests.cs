@@ -18,7 +18,7 @@ namespace DataStructuresToolkit.Tests
             stack.Push(20);
             // Assert
             Assert.Equal(2, stack.Count);
-            Assert.Equal(20, stack.Peek()); 
+            Assert.Equal(20, stack.Peek());
         }
 
         // Test to ensure Pop returns the last pushed item and decreases the count
@@ -53,5 +53,25 @@ namespace DataStructuresToolkit.Tests
             Assert.IsType<InvalidOperationException>(popException);
         }
 
+        // Test to ensure the stack resizes correctly when many items are pushed
+        // This verifies that the internal array grows and maintains order
+        [Fact]
+        public void Many_Items_TriggersResize_And_KeepsOrder()
+        { 
+            // Arrange
+            var stack = new MyStack<int>(2); // Start with small capacity to force resize
+            // Act
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3); // This should trigger a resize
+            int firstPop = stack.Pop();
+            int secondPop = stack.Pop();
+            int thirdPop = stack.Pop();
+            // Assert
+            Assert.Equal(0, stack.Count);
+            Assert.Equal(3, firstPop);
+            Assert.Equal(2, secondPop);
+            Assert.Equal(1, thirdPop);
+        }
     }
 }
