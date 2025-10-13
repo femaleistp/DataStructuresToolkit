@@ -12,22 +12,60 @@ namespace DataStructuresToolkit.StacksQueues
         private int _count;
         private int _head;
         private int _tail;
-        public MyQueue(int intialCapacity = 4)
+        public MyQueue(int initialCapacity = 4)
         {
-            if (intialCapacity < 1)
+            if (initialCapacity < 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(intialCapacity));
+                throw new ArgumentOutOfRangeException(nameof(initialCapacity));
             }
 
-            _items = new T[intialCapacity];
+            _items = new T[initialCapacity];
             _count = 0;
             _head = 0;
             _tail = 0;
         }
-        // Complexity time O(1) and space O(n)
+        // Complexity time O(1) and space O(1)
         public int Count
         {
             get { return _count; }
+        }
+
+        // If space available, complexity time O(1) and space O(1)
+        // If space not available, complexity time O(n) and space O(n)
+        // Amortized effect on Enqueue remains O(1) time and O(1) space
+        private void EnsureCapacityForOneMore()
+        {
+            if (_count < _items.Length)
+            {
+                return;
+            }
+
+            int newCapacity;
+            if (_items.Length == 0)
+            {
+                newCapacity = 4;
+            }
+            else
+            {
+                newCapacity = _items.Length * 2;
+            }
+
+            T[] newArray = new T[newCapacity];
+
+            for (int i = 0; i < _count; i++)
+            {
+                int sourceIndex = _head + i;
+                if (sourceIndex >= _items.Length)
+                { 
+                    sourceIndex = sourceIndex - _items.Length;
+                }
+                newArray[i] = _items[sourceIndex];
+            }
+
+            _items = newArray;
+            _head = 0;
+            _tail = _count;
+
         }
     }
 }
