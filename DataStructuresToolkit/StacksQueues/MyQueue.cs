@@ -30,6 +30,18 @@ namespace DataStructuresToolkit.StacksQueues
             get { return _count; }
         }
 
+        public void Enqueue(T item)
+        {
+            EnsureCapacityForOneMore();
+            _items[_tail] = item;
+            _tail++; // advance tail with circular wrap
+            if (_tail == _items.Length)
+            {
+                _tail = 0;
+            }
+            _count++;
+        }
+
         // If space available, complexity time O(1) and space O(1)
         // If space not available, complexity time O(n) and space O(n)
         // Amortized effect on Enqueue remains O(1) time and O(1) space
