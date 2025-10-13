@@ -52,5 +52,38 @@ namespace DataStructuresToolkit.Tests
             Assert.IsType<InvalidOperationException>(peekEx);
             Assert.IsType<InvalidOperationException>(dequeueEx);
         }
+
+        [Fact]
+        public void Wraparound_With_Resize_Preserves_FIFO_Order()
+        {
+            // Arrange
+            var q = new MyQueue<int>(3);
+            // Act
+            q.Enqueue(1);
+            q.Enqueue(2);
+            q.Enqueue(3); // Queue is now full
+
+            int firstOut = q.Dequeue(); // Expect 1 (moves head forward)
+
+            int secondOut = q.Dequeue(); // Expect 2
+            q.Enqueue(4); // Tail wraps to index 0
+            q.Enqueue(5); // Queue full again
+            int countBeforeResize = q.Count; // Should be 3
+            q.Enqueue(6); // This should trigger a resize
+
+            int a = q.Dequeue(); // Expect 3
+            int b = q.Dequeue(); // Expect 4
+            int c = q.Dequeue(); // Expect 5
+            int d = q.Dequeue(); // Expect 6
+            // Assert
+            Assert.Equal(1, firstOut);
+            Assert.Equal(2, secondOut);
+            Assert.Equal(3, countBeforeResize);
+            Assert.Equal(3, a);
+            Assert.Equal(4, b);
+            Assert.Equal(5, c);
+            Assert.Equal(6, d);
+            Assert.Equal(0, q.Count);
+        }
     }
 }
