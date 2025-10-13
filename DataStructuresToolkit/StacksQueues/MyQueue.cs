@@ -53,6 +53,26 @@ namespace DataStructuresToolkit.StacksQueues
             return _items[_head];
         }
 
+        public T Dequeue()
+        {
+            if (_count == 0)
+            { 
+                throw new InvalidOperationException("Queue is empty");
+            }
+
+            T value = _items[_head]; // read current front
+
+            _items[_head] = default(T); // clear reference
+
+            _head++; // advance head with circular wrap
+            if (_head == _items.Length)
+            {
+                _head = 0;
+            }
+            _count--;
+            return value;
+        }
+
         // If space available, complexity time O(1) and space O(1)
         // If space not available, complexity time O(n) and space O(n)
         // Amortized effect on Enqueue remains O(1) time and O(1) space
