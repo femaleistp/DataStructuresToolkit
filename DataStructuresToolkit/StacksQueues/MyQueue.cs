@@ -42,6 +42,17 @@ namespace DataStructuresToolkit.StacksQueues
             _count++;
         }
 
+        // Complexity time O(1) and space O(1)
+        public T Peek()
+        { 
+            if (_count == 0)
+            {
+                throw new InvalidOperationException("Queue is empty");
+            }
+
+            return _items[_head];
+        }
+
         // If space available, complexity time O(1) and space O(1)
         // If space not available, complexity time O(n) and space O(n)
         // Amortized effect on Enqueue remains O(1) time and O(1) space
