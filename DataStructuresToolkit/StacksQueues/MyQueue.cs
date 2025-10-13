@@ -30,6 +30,8 @@ namespace DataStructuresToolkit.StacksQueues
             get { return _count; }
         }
 
+        // Complexity time O(1) and space O(1) if space available
+        // Complexity time O(n) and space O(n) if space not available
         public void Enqueue(T item)
         {
             EnsureCapacityForOneMore();
@@ -47,17 +49,18 @@ namespace DataStructuresToolkit.StacksQueues
         { 
             if (_count == 0)
             {
-                throw new InvalidOperationException("Queue is empty");
+                throw new InvalidOperationException("Queue is empty.");
             }
 
             return _items[_head];
         }
 
+        // Complexity time O(1) and space O(1)
         public T Dequeue()
         {
             if (_count == 0)
             { 
-                throw new InvalidOperationException("Queue is empty");
+                throw new InvalidOperationException("Queue is empty.");
             }
 
             T value = _items[_head]; // read current front
