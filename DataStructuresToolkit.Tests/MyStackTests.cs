@@ -6,6 +6,8 @@ namespace DataStructuresToolkit.Tests
 {
     public class MyStackTests
     {
+        // Test to ensure Push increases count and Peek shows the top item
+        // This verifies that items are added correctly and the top is accessible
         [Fact]
         public void Push_IncreasesCount_AndPeekShowsTop()
         {
@@ -19,6 +21,8 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(20, stack.Peek()); 
         }
 
+        // Test to ensure Pop returns the last pushed item and decreases the count
+        // This verifies the LIFO behavior of the stack
         [Fact]
         public void Pop_returnsLastPushed_AndDecreasesCount()
         {
@@ -32,6 +36,21 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal("B", popped);
             Assert.Equal(1, stack.Count);
             Assert.Equal("A", stack.Peek());
+        }
+
+        // Test to ensure exceptions are thrown when popping or peeking from an empty stack
+        // This verifies the stack's error handling
+        [Fact]
+        public void Peek_And_Pop_OnEmpty_ThrowInvalidOperationsException()
+        {
+            // Arrange
+            var stack = new MyStack<int>();
+            // Act
+            Exception peekException = Record.Exception(delegate { stack.Peek(); });
+            Exception popException = Record.Exception(delegate { stack.Pop(); });
+            // Assert
+            Assert.IsType<InvalidOperationException>(peekException);
+            Assert.IsType<InvalidOperationException>(popException);
         }
 
     }
