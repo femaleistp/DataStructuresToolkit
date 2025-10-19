@@ -9,6 +9,10 @@ namespace DataStructuresToolkit.Tests
 {
     public class ArrayStringListHelpers_Tests_
     {
+        /// <summary>
+        /// Inserts into array shifts elements to the right.
+        /// </summary>
+        /// <remarks>complexity O(n) time, O(1) space</remarks>
         [Fact]
         public void InsertIntoArray_ShiftsRight()
         {
@@ -20,6 +24,10 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(new[] { 1001, 2001, 3000, 3001, 4001 }, arr);
         }
 
+        /// <summary>
+        /// Deletes from array shifts elements to the left and clears the tail.
+        /// </summary>
+        /// <remarks>complexity O(n) time, O(1) space</remarks>
         [Fact]
         public void DeleteFromArray_ShiftsLeft_AndClearsTail()
         {
@@ -31,6 +39,10 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(new[] { 1001, 2001, 4001, 5001, 0 }, arr);
         }
 
+        /// <summary>
+        /// Inserts into list at the given index.
+        /// </summary>
+        /// <remarks>complexity O(n) time, O(1) space</remarks>
         [Fact]
         public void InsertIntoList_Middle()
         {
@@ -42,6 +54,10 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(new List<int> { 1001, 2001, 3000, 3001, 4001, 5001 }, list);
         }
 
+        /// <summary>
+        /// Deletes from list at the given index.
+        /// </summary>
+        /// <remarks>complexity O(n) time, O(1) space</remarks>
         [Fact]
         public void Concat_SameResult_NaiveVsBuilder_PrintTicks()
         {
@@ -70,6 +86,10 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(s1.Length, s2.Length);
         }
 
+        /// <summary>
+        /// Capitalizes each name in the string matching the lab style.
+        /// </summary>
+        /// <remarks>complexity O(n) time, O(n) space</remarks>
         [Fact]
         public void CapitalizeEachName_MatchesLabStyle()
         {
