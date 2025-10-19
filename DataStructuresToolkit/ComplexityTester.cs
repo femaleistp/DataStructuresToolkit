@@ -8,17 +8,23 @@ namespace DataStructuresToolkit
 {
     public class ComplexityTester
     {
-        /// <summary> O(1) - Constant Time Complexity: a math method </summary>
+        /// <summary>
+        /// O(1) - Constant Time Complexity: a method calculating the sum of 1 to n using the formula n(n+1)/2
+        /// </summary>
         /// <param name="n"> the input size </param>
-        /// <remarks> Method runs set operations despite n value. </remarks>
+        /// <returns> the sum from 1 to n </returns>
+        /// <remarks> complexity time O(1) and space O(1) </remarks>
         public long RunConstantScenario(int n)
         {
             return (long) n * (n + 1) / 2;
         }
 
-        /// <summary> O(n) - Linear Time Complexity: a method looping 1 to n adding them together </summary>
+        /// <summary>
+        /// O(n) - Linear Time Complexity: a method looping from 1 to n and summing the values
+        /// </summary>
         /// <param name="n"> the input size </param>
-        /// <remarks> Growing one at a time as n increases </remarks>
+        /// <returns> the sum from 1 to n </returns>
+        /// <remarks>complexity time O(n) and space O(1)</remarks>
         public long RunLinearScenario(int n)
         {
             long sum = 0;
@@ -29,9 +35,12 @@ namespace DataStructuresToolkit
             return sum;
         }
 
-        /// <summary> O(n^2) - Quadratic Time Complexity: a method looping 1 to n inside another loop 1 to n </summary>
+        /// <summary>
+        /// O(n^2) - Quadratic Time Complexity: a method with nested loops from 1 to n, summing the product of the indices
+        /// </summary>
         /// <param name="n"> the input size </param>
-        /// <remarks> Growing by the square as n increases </remarks>
+        /// <returns> the sum of products of indices </returns>
+        /// <remarks>complexity time O(n^2) and space O(1)</remarks>
         public long RunQuadraticScenario(int n)
         {
             long sum = 0;
