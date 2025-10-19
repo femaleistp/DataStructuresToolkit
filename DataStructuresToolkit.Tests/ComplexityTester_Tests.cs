@@ -6,6 +6,10 @@ namespace DataStructuresToolkit.Tests
     {
         private readonly ComplexityTester _ct = new ComplexityTester();
 
+        /// <summary>
+        /// O(1) - Constant Time Complexity test
+        /// </summary>
+        /// <remarks>complexity O(1) time, O(1) space</remarks>
         [Fact]
         public void RunConstantScenario()
         {
@@ -22,6 +26,10 @@ namespace DataStructuresToolkit.Tests
             }
         }
 
+        /// <summary>
+        /// O(n) - Linear Time Complexity test
+        /// </summary>
+        /// <remarks>complexity O(n) time, O(1) space</remarks>
         [Fact]
         public void RunLinearScenario()
         {
@@ -38,6 +46,10 @@ namespace DataStructuresToolkit.Tests
             }
         }
 
+        /// <summary>
+        /// O(n^2) - Quadratic Time Complexity test
+        /// </summary>
+        /// <remarks>complexity O(n^2) time, O(1) space</remarks>
         [Fact]
         public void RunQuadraticScenario()
         {
