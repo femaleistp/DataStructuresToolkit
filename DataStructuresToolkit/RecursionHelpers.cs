@@ -62,31 +62,28 @@ namespace DataStructuresToolkit
         }
 
         /// <summary>
-        /// Traverses a directory and prints its structure recursively.
+        /// Counts the total number of files in a directory and its subdirectories recursively.
         /// </summary>
-        /// <param name="path">The path of the directory to traverse.</param>
-        /// <param name="indent">The indentation for the current level (used for formatting).</param>
-        /// <remarks>complexity O(n) time and O(d) space, where n is the number of files and directories, and d is the depth of the directory tree.</remarks>
-        public static void TraverseDirectory(string path, string indent = "")
-        {
+        /// <param name="path"> The directory path to count files in.</param></param>
+        /// <returns>The total number of files.</returns>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the specified directory does not exist.</exception>
+        /// <remarks>complexity O(n) time and O(d) space, where n is the number of files and d is the depth of the directory tree</remarks>
+        public static int CountFilesRecursively(string path)
+        { 
             if (!Directory.Exists(path))
             {
-                Console.WriteLine(indent + "[Missing]" + path);
-                return;
+                throw new DirectoryNotFoundException($"Directory not found: {path}");
             }
 
             string[] files = Directory.GetFiles(path);
-            foreach (string file in files)
-            {
-                Console.WriteLine(indent + "- " + Path.GetFileName(file));
-            }
+            int count = files.Length;
 
-            string[] directories = Directory.GetDirectories(path);
-            foreach(string dir in directories)
+            string[] subdirs = Directory.GetDirectories(path);
+            foreach (string subdir in subdirs)
             {
-                Console.WriteLine(indent + "> " + Path.GetFileName(dir));
-                TraverseDirectory(dir, indent + "  ");
+                count += CountFilesRecursively(subdir);
             }
+            return count;
         }
     }
 }

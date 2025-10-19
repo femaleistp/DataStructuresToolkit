@@ -118,50 +118,43 @@ namespace DataStructuresToolkit.Tests
         }
 
         /// <summary>
-        /// Tests the TraverseDirectory method with a missing directory, expecting a specific message.
+        /// Tests the CountFilesRecursively method with nested folders.
         /// </summary>
-        /// <remarks>complexity O(1) time and O(1) space</remarks>
+        /// <remarks>complexity O(n) time and O(d) space, where n is the number of files and d is the depth of the directory tree</remarks>
         [Fact]
-        public void TraverseDirectory_MissingDirectory_PrintMessage()
-        { 
+        public void CountFilesRecursively_NestedFolders_ReturnCorrectCount()
+        {
             // Arrange
-            string fakePath = "Z:\\This\\Path\\Does\\Not\\Exist";
-            string output;
-            // Act
-            using (var writer = new StringWriter())
-            {
-                Console.SetOut(writer);
-                RecursionHelpers.TraverseDirectory(fakePath);
-                output = writer.ToString();
-            }
+            string root = Path.Combine(Path.GetTempPath(), "NestedFolder_Test");
+            string sub1 = Path.Combine(root, "Sub1");
+            string sub2 = Path.Combine(sub1, "Sub2");
+            Directory.CreateDirectory(sub2);
+            File.WriteAllText(Path.Combine(root, "a.txt"), "test");
+            File.WriteAllText(Path.Combine(sub1, "b.txt"), "test");
+            File.WriteAllText(Path.Combine(sub2, "c.txt"), "test");
+            // Act  
+            int count = RecursionHelpers.CountFilesRecursively(root);
             // Assert
-            Assert.Contains("[Missing]", output);
+            Assert.Equal(3, count);
         }
 
         /// <summary>
-        /// Tests the TraverseDirectory method with an empty directory, expecting no extra output.
+        /// Tests the CountFilesRecursively method with an empty folder.
         /// </summary>
         /// <remarks>complexity O(1) time and O(1) space</remarks>
         [Fact]
-        public void TraverseDirectory_EmptyDirectory_PrintsNothingExtra()
-        {
+        public void CountFilesRecursively_EmptyFolder_ReturnsZero()
+        { 
             // Arrange
-            string tempPath = Path.Combine(Path.GetTempPath(), "EmptyTestFolder");
+            string tempPath = Path.Combine(Path.GetTempPath(), "Empty Folder_Test");
             if (!Directory.Exists(tempPath))
-            {
+            { 
                 Directory.CreateDirectory(tempPath);
             }
-            string output;
             // Act
-            using (var writer = new StringWriter())
-            {
-                Console.SetOut(writer);
-                RecursionHelpers.TraverseDirectory(tempPath);
-                output = writer.ToString();
-            }
-
+            int count = RecursionHelpers.CountFilesRecursively(tempPath);
             // Assert
-            Assert.DoesNotContain("[Missing]", output);
+            Assert.Equal(0, count);
             // Cleanup
             Directory.Delete(tempPath, true);
         }
