@@ -6,8 +6,10 @@ namespace DataStructuresToolkit.Tests
 {
     public class MyQueueTests
     {
-        // Test to ensure Enqueue increases count and Peek shows the first item
-        // This verifies that items are added correctly and the front is accessible
+        /// <summary>
+        /// Test to ensure Enqueue increases count and Peek shows the first item
+        /// </summary>
+        /// <remarks>complexity O(1) time and O(1) space</remarks>
         [Fact]
         public void Enqueue_IncreasesCount_And_Peek_ShowsFirst()
         {
@@ -21,8 +23,10 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(10, q.Peek());
         }
 
-        // Test to ensure Dequeue returns the first item and decreases the count
-        // This verifies the FIFO behavior of the queue
+        /// <summary>
+        /// Test to ensure Peek returns the first item without removing it
+        /// </summary>
+        /// <remarks>complexity O(1) time and O(1) space</remarks>
         [Fact]
         public void Dequeue_ReturnsFirst_And_DecreasesCount()
         { 
@@ -38,8 +42,10 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal("B", q.Peek());
         }
 
-        // Test to ensure exceptions are thrown when dequeuing or peeking from an empty queue
-        // This verifies the queue's error handling
+        /// <summary>
+        /// Test to ensure exceptions are thrown when dequeuing or peeking from an empty queue
+        /// </summary>
+        /// <remarks>complexity O(1) time and O(1) space</remarks>
         [Fact]
         public void Peek_And_Dequeue_OnEmpty_ThrowInvalidOperationException()
         { 
@@ -53,6 +59,10 @@ namespace DataStructuresToolkit.Tests
             Assert.IsType<InvalidOperationException>(dequeueEx);
         }
 
+        /// <summary>
+        /// Test to ensure that wraparound with resize preserves FIFO order
+        /// </summary>
+        /// <remarks>complexity O(n) time and O(n) space</remarks>
         [Fact]
         public void Wraparound_With_Resize_Preserves_FIFO_Order()
         {
