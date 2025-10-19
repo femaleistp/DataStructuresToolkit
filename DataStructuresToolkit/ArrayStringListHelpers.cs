@@ -100,6 +100,7 @@ namespace DataStructuresToolkit
         /// <summary>
         /// Capitalizes each word in a name string.
         /// </summary>
+        /// <remarks>Complexity O(n) time, O(n) space.</remarks>
         public static string CapitalizeEachName(string name)
         {
             if (name == null) return string.Empty;
@@ -127,11 +128,6 @@ namespace DataStructuresToolkit
         /// O(n) for middle inserts (array-backed shifts),
         /// amortized O(1) when adding to the end if capacity is available.
         /// </remarks>
-        /// 
-        // InsertIntoList inserts a value into a List at the given index.  With the time
-        // complexity of O(n) for middle inserts (array-backed shifts), and amortized O(1)
-        // when adding to the end if capacity is available. Trend noted is that inserts at
-        // the start or middle of a large list take longer than inserts at the end.
         public static void InsertIntoList(List<int> list, int index, int value)
         {
             if (list == null) throw new ArgumentNullException(nameof(list));
