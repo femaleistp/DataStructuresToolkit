@@ -6,8 +6,11 @@ namespace DataStructuresToolkit.Tests
 {
     public class MyStackTests
     {
-        // Test to ensure Push increases count and Peek shows the top item
-        // This verifies that items are added correctly and the top is accessible
+        /// <summary>
+        /// Tests for MyStack<T> class
+        /// </summary>
+        /// <remarks>Tests cover basic stack operations and edge cases.</remarks>
+        /// <remarks>Time complexity O(1) for basic operations, O(n) for resizing.</remarks>
         [Fact]
         public void Push_IncreasesCount_AndPeekShowsTop()
         {
@@ -21,8 +24,11 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(20, stack.Peek());
         }
 
-        // Test to ensure Pop returns the last pushed item and decreases the count
-        // This verifies the LIFO behavior of the stack
+        /// <summary>
+        /// Tests Pop method of MyStack<T>
+        /// </summary>
+        /// <remarks>Tests cover popping items and stack behavior.</remarks>
+        /// <remarks>complexity O(1) for pop operation.</remarks>
         [Fact]
         public void Pop_returnsLastPushed_AndDecreasesCount()
         {
@@ -38,8 +44,10 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal("A", stack.Peek());
         }
 
-        // Test to ensure exceptions are thrown when popping or peeking from an empty stack
-        // This verifies the stack's error handling
+        /// <summary>
+        /// Tests Peek and Pop on an empty stack
+        /// </summary>
+        /// <remarks>complexity O(1) for both operations.</remarks>
         [Fact]
         public void Peek_And_Pop_OnEmpty_ThrowInvalidOperationsException()
         {
@@ -53,8 +61,10 @@ namespace DataStructuresToolkit.Tests
             Assert.IsType<InvalidOperationException>(popException);
         }
 
-        // Test to ensure the stack resizes correctly when many items are pushed
-        // This verifies that the internal array grows and maintains order
+        /// <summary>
+        /// Tests pushing many items to trigger resize
+        /// </summary>
+        /// <remarks>complexity O(n) for resizing operation.</remarks>
         [Fact]
         public void Many_Items_TriggersResize_And_KeepsOrder()
         { 
