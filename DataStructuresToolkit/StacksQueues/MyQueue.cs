@@ -13,6 +13,7 @@ namespace DataStructuresToolkit.StacksQueues
         /// </summary>
         /// <param name="initialCapacity">Starting array size (must be at least 1).</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when initialCapacity is less than 1.</exception>
+        /// <remarks>complexity O(1) time and O(n) space</remarks>
         public MyQueue(int initialCapacity = 4)
         {
             if (initialCapacity < 1)
@@ -93,6 +94,10 @@ namespace DataStructuresToolkit.StacksQueues
             return value;
         }
 
+        /// <summary>
+        /// Ensures there is capacity for one more item, resizing if necessary.
+        /// </summary>
+        /// <remarks>complexity O(n) time and O(n) space</remarks>
         private void EnsureCapacityForOneMore()
         {
             if (_count < _items.Length)
