@@ -5,8 +5,15 @@ using DataStructuresToolkit;
 
 namespace DemoHarness
 {
+    /// <summary>
+    /// Demo class for Sorting and Searching Helpers.
+    /// </summary>
     public class Demo_SortingSearching
     {
+        /// <summary>
+        /// Entry point for the Sorting and Searching demo.
+        /// </summary>
+        /// <param name="args">Command-line arguments (not used)</param>
         static void Main(string[] args)
         {
             Console.WriteLine("=== Demo: Sorting and Searching Helpers ===\n");
