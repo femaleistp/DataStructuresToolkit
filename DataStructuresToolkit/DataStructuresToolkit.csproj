@@ -45,6 +45,7 @@
     <Compile Include="ComplexityTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecursionHelpers.cs" />
+    <Compile Include="SortingSearchingHelpers.cs" />
     <Compile Include="StacksQueues\MyQueue.cs" />
     <Compile Include="StacksQueues\MyStack.cs" />
   </ItemGroup>
