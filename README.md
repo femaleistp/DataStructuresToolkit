@@ -7,17 +7,17 @@
 ---
 
 ## Overview
-The DataStructuresToolkit project is a C# solution that demonstrates the main data structure and algorithm concepts using reusable code modules.  
-It includes arrays, lists, stacks, queues, recursion, and complexity analysis examples.  
-All modules are documented with XML comments and tested with xUnit to confirm they work correctly.  
-The toolkit builds toward later topics such as tree traversals and divide-and-conquer algorithms.
+The **DataStructuresToolkit** project is a C# solution demonstrating key data structure and algorithm concepts using reusable, testable modules.  
+It includes arrays, lists, stacks, queues, recursion, sorting, and searching examples — each with time complexity analysis and console demos.  
+All modules are documented with XML comments and tested using xUnit.  
+The toolkit now also includes **performance measurement utilities** that time algorithms in microseconds and apply **JIT warm-up** to improve accuracy.
 
 ---
 
 ## Project Structure
-**DataStructuresToolkit** – main library containing all class files.  
-**DataStructuresToolkit.Tests** – xUnit tests that confirm each method works correctly.  
-**DemoHarness** – console demo project that shows how stacks and queues behave in real examples.
+**DataStructuresToolkit** – main class library containing all data structure and algorithm files.  
+**DataStructuresToolkit.Tests** – xUnit test project verifying correctness and edge cases.  
+**DemoHarness** – console demo application that runs and compares algorithms visually and through timing output.
 
 ---
 
@@ -25,130 +25,150 @@ The toolkit builds toward later topics such as tree traversals and divide-and-co
 Purpose: Helper methods for arrays, strings, and lists.
 
 **Key Methods:**  
-InsertIntoArray – shifts items right and overwrites the last element.  
-DeleteFromArray – shifts items left and clears the last slot.  
-ConcatenateNamesNaive – joins names with spaces using += (O(n²)).  
-ConcatenateNamesBuilder – joins names using StringBuilder (O(n)).  
-CapitalizeEachName – capitalizes each word in a name string.  
-InsertIntoList – inserts a value into a List<int> at a specific index.
+- `InsertIntoArray` – shifts items right and overwrites the last element.  
+- `DeleteFromArray` – shifts items left and clears the last slot.  
+- `ConcatenateNamesNaive` – joins names using string concatenation (`+=`) **O(n²)**.  
+- `ConcatenateNamesBuilder` – joins names using `StringBuilder` **O(n)**.  
+- `CapitalizeEachName` – capitalizes the first letter of each word.  
+- `InsertIntoList` – inserts an integer into a `List<int>` at a specific index.
 
 **Complexity Summary:**  
-Insert and delete: O(n) time, O(1) space.  
-Concatenation with StringBuilder: O(n) time, O(n) space.  
-All methods include parameter checks and XML documentation.
+- Insert/Delete: O(n) time, O(1) space.  
+- Concatenation (StringBuilder): O(n) time, O(n) space.  
+All methods include parameter validation and XML documentation.
 
 ---
 
 ## ComplexityTester.cs
-Purpose: Shows how runtime grows under constant, linear, and quadratic conditions.
+Purpose: Demonstrates growth rates under constant, linear, and quadratic conditions.
 
 **Key Methods:**  
-RunConstantScenario – O(1) using n(n+1)/2 formula.  
-RunLinearScenario – O(n) by summing numbers with a loop.  
-RunQuadraticScenario – O(n²) using nested loops.
+- `RunConstantScenario` – O(1) using n(n+1)/2 formula.  
+- `RunLinearScenario` – O(n) using a single loop.  
+- `RunQuadraticScenario` – O(n²) using nested loops.
 
 **Use:**  
-The tests display elapsed time in milliseconds to compare performance as n increases.
+Displays elapsed time in milliseconds for side-by-side comparison.  
+Provides foundational understanding of algorithmic efficiency.
 
 ---
 
 ## MyStack.cs
-Purpose: Implements a simple resizable stack (LIFO).
+Purpose: Implements a dynamic **stack (LIFO)** with automatic resizing.
 
 **Main Methods:**  
-Push – adds an item to the top.  
-Pop – removes and returns the last item added.  
-Peek – returns the top item without removing it.  
-Count – property returning the number of items.
+- `Push` – adds an item to the top.  
+- `Pop` – removes and returns the top item.  
+- `Peek` – returns the top item without removing it.  
+- `Count` – returns the number of items currently stored.
 
 **Behavior:**  
-Resizes the internal array when full.  
-Supports Undo and backtracking use cases.
+Resizes when full; supports undo/redo functionality.  
 
 **Complexity:**  
-Push/Pop/Peek – O(1) time and space.  
-Resize – O(n) time, O(n) space when triggered.
+Push/Pop/Peek: O(1) average case; Resize: O(n).
 
 ---
 
 ## MyQueue.cs
-Purpose: Implements a circular queue (FIFO).
+Purpose: Implements a **circular queue (FIFO)** that grows automatically.
 
 **Main Methods:**  
-Enqueue – adds an item to the end.  
-Dequeue – removes and returns the front item.  
-Peek – returns the front item without removing it.  
-Count – property returning the number of items.
+- `Enqueue` – adds an item to the back.  
+- `Dequeue` – removes and returns the front item.  
+- `Peek` – returns the front item without removing it.  
+- `Count` – number of items currently in queue.
 
 **Behavior:**  
-Uses a circular array that wraps when full.  
-Doubles capacity automatically when resizing.  
-Ideal for managing tasks or print jobs in order.
+Automatically doubles capacity when full; wraps indices circularly.
 
 **Complexity:**  
-Enqueue/Dequeue/Peek – O(1) time and space.  
-Resize – O(n) time when expanding.
+Enqueue/Dequeue/Peek: O(1); Resize: O(n).
 
 ---
 
 ## RecursionHelpers.cs
-Purpose: Demonstrates recursion for three different problem types.
+Purpose: Demonstrates three recursion types.
 
 **Mathematical Recursion:**  
-Factorial(int n) – calculates n! recursively.  
-Base case: n == 0 returns 1.  
-Recursive case: n * Factorial(n - 1).
+- `Factorial(int n)` – computes n! recursively.
 
 **Problem-Solving Recursion:**  
-IsPalindrome(string s) – checks if a string reads the same forward and backward.  
-Base case: strings of length 0 or 1 return true.  
-Recursive case: compare first and last character, then recurse inward.
+- `IsPalindrome(string s)` – checks if a string reads the same forward and backward.
 
 **Structural Recursion:**  
-CountFilesRecursively(string path) – counts files in a directory and subdirectories.  
-Base case: directory with no subfolders returns number of files.  
-Recursive case: adds results from subfolders to the count.
+- `CountFilesRecursively(string path)` – counts files in subdirectories.
 
 **Complexity:**  
-Factorial and IsPalindrome: O(n) time, O(n) space.  
-CountFilesRecursively: O(n) time, O(d) space where d is directory depth.
+Factorial / Palindrome: O(n) time, O(n) space.  
+Directory traversal: O(n) time, O(d) space where d = depth.
 
 ---
 
-## Testing
-All tests are written using xUnit in the DataStructuresToolkit.Tests project.
+## SortingSearchingHelpers.cs
+Purpose: Implements and compares **sorting and searching algorithms**.
 
-**Test Files:**  
-ArrayStringListHelpers_Tests_.cs – checks array, string, and list functions.  
-ComplexityTester_Tests.cs – compares constant, linear, and quadratic runs.  
-MyStackTests.cs – verifies push, pop, peek, resize, and empty exceptions.  
-MyQueueTests.cs – verifies enqueue, dequeue, wraparound, resize, and exceptions.  
-RecursionHelpersTests.cs – verifies factorial, palindrome, and directory recursion.
+**Sorting Algorithms:**  
+- `BubbleSort(int[] arr)` – O(n²)  
+- `MergeSort(int[] arr)` – O(n log n)
 
-**Result:**  
-All tests pass successfully in Visual Studio Test Explorer.
+**Searching Algorithms:**  
+- `LinearSearch(int[] arr, int target)` – O(n)  
+- `BinarySearch(int[] arr, int target)` – O(log n)
+
+**Enhancements (Oct 2025):**  
+- Converted timing to **microseconds (µs)** for higher precision.  
+- Added **JIT warm-up** runs for BubbleSort, MergeSort, LinearSearch, and BinarySearch to remove first-call timing spikes.  
+- Improved console output formatting (`F1` for sorts, `F0` for searches).  
+- Titles updated from milliseconds to **microseconds** in the table header.  
 
 ---
 
 ## DemoHarness
-File: Demo_StacksQueues.cs
+### Demo_StacksQueues.cs
+Simulates stack and queue operations in real-world use cases:
+1. **Undo History (Stack)** – text editing simulation with reversible changes.  
+2. **Print Queue (Queue)** – demonstrates job ordering and processing.  
+3. **Performance Test** – compares MyStack and MyQueue runtime in microseconds.
 
-This console demo shows how stacks and queues behave with real examples.  
-It includes:
+### Demo_SortingSearching.cs
+New console demo comparing algorithm performance.
 
-Part 1 – A text editor that uses a stack for undo history.  
-Part 2 – A print queue that processes jobs in order.  
-Part 3 – A performance test comparing MyStack and MyQueue speed.
+**Features:**  
+- Measures BubbleSort, MergeSort, LinearSearch, and BinarySearch across multiple input sizes (100, 1000, 10000).  
+- Reports execution times in **microseconds (µs)**.  
+- Includes **JIT warm-up** calls for accurate results.  
+- Outputs tabular summary for easy comparison.
 
-**Output:**  
-Displays all actions step by step in the console and shows timing in milliseconds and microseconds for performance comparison.
+**Sample Output:**
+
+=== Demo: Sorting and Searching Helpers ===
+
+Array Size BubbleSort (µs) MergeSort (µs) LinearSearch (µs) BinarySearch (µs)  
+100 88 25 0.7 0.3  
+1000 1625 192 5.2 0.2  
+10000 156097 2823 53.5 0.3  
+
+---
+## Testing
+All algorithms are validated using xUnit.
+
+**Test Files:**
+- ArrayStringListHelpers_Tests.cs  
+- ComplexityTester_Tests.cs  
+- MyStackTests.cs  
+- MyQueueTests.cs  
+- RecursionHelpersTests.cs  
+- SortingSearchingHelpers_Tests.cs *(planned for extension)*  
+
+**Results:**
+- All existing tests pass successfully.  
+- New demos verified manually in console runs.
 
 ---
 
 ## Reflection
-Creating this toolkit helped me understand how arrays, stacks, queues, and recursion work behind the scenes.  
-I learned how data structures handle storage, access, and resizing.  
-The ComplexityTester made it clear how time grows with input size.  
-Recursion taught me to identify base and recursive steps.  
-Writing tests and XML documentation helped me see each method’s purpose and limits clearly.  
-This toolkit now serves as a foundation for future topics like trees, sorting, and divide-and-conquer algorithms.
+Developing this toolkit deepened my understanding of how data structures and algorithms differ in behavior and efficiency.  
+Through direct timing experiments, I learned how sorting scales with n, and how search algorithms differ logarithmically and linearly.  
+Implementing warm-up calls showed how JIT compilation can distort first-run performance, while measuring in microseconds revealed subtle efficiency differences otherwise hidden in milliseconds.  
+This project now provides both theoretical and empirical insight into algorithm performance — bridging classroom concepts with practical benchmarking.
