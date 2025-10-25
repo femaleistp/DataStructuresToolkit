@@ -40,5 +40,66 @@ namespace DataStructuresToolkit
                 }
             }
         }
+
+        /// <summary>
+        /// Sorts an array of integers in ascending order using the Merge Sort algorithm.
+        /// </summary>
+        /// <param name="arr">The array of integers to be sorted.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the input array is null.</exception>
+        /// <remarks>Complexity time O(n log n) and space O(n)</remarks>
+        public static void MergeSort(int[] arr)
+        {
+            if (arr == null)
+            {
+                throw new ArgumentNullException(nameof(arr));
+            }
+            if (arr.Length <= 1)
+            {
+                return;
+            }
+            int mid = arr.Length / 2;
+            int[] left = new int[mid];
+            int[] right = new int[arr.Length - mid];
+            Array.Copy(arr, 0, left, 0, mid);
+            Array.Copy(arr, mid, right, 0, arr.Length - mid);
+            MergeSort(left);
+            MergeSort(right);
+            Merge(arr, left, right);
+        }
+
+        /// <summary>
+        /// Helper method to merge two sorted arrays into a single sorted array.
+        /// </summary>
+        /// <param name="arr">The target array to hold the merged result.</param>
+        /// <param name="left">The left sorted array.</param>
+        /// <param name="right">The right sorted array.</param>
+        /// <remarks>complexity time O(n) and space O(n)</remarks>
+        public static void Merge(int[] arr, int[] left, int[] right)
+        {
+            int i = 0;
+            int j = 0;
+            int k = 0;
+            while (i < left.Length && j < right.Length)
+            {
+                if (left[i] <= right[j])
+                {
+                    arr[k++] = left[i++];
+                }
+                else
+                {
+                    arr[k++] = right[j++];
+                }
+            }
+
+            while (i < left.Length)
+            {
+                arr[k++] = left[i++];
+            }
+
+            while (j < right.Length)
+            {
+                arr[k++] = right[j++];
+            }
+        }
     }
 }
