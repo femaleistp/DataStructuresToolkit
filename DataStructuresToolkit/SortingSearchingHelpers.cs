@@ -101,5 +101,29 @@ namespace DataStructuresToolkit
                 arr[k++] = right[j++];
             }
         }
+
+        /// <summary>
+        /// Performs a linear search on an array to find the index of the target value.
+        /// </summary>
+        /// <param name="arr">array of integers to search through</param>
+        /// <param name="target">an integer value to search for</param>
+        /// <returns>the index of the target if found; otherwise, -1</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the input array is null.</exception>
+        /// <remarks>complexity time O(n) and space O(1)</remarks>
+        public static int LinearSearch(int[] arr, int target)
+        {
+            if (arr == null)
+            {
+                throw new ArgumentNullException(nameof(arr));
+            }
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] == target)
+                {
+                    return i; // Target found at index i
+                }
+            }
+            return -1; // Target not found
+        }
     }
 }
