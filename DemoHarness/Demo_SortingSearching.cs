@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using DataStructuresToolkit;
 
 namespace DemoHarness
 {
-    internal class Demo_SortingSearching
+    public class Demo_SortingSearching
     {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("=== Demo: Sorting and Searching Helpers ===\n");
+        }
     }
 }
