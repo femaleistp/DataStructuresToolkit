@@ -18,7 +18,7 @@ namespace DataStructuresToolkit
         /// <param name="arr">The array of integers to be sorted.</param>
         /// <exception cref="ArgumentNullException">Thrown when the input array is null.</exception>
         /// <remarks>complexity time O(n^2) and space O(1)</remarks>
-        static void BubbleSort(int[] arr)
+        public static void BubbleSort(int[] arr)
         {
             if (arr == null)
             {
@@ -74,7 +74,7 @@ namespace DataStructuresToolkit
         /// <param name="left">The left sorted array.</param>
         /// <param name="right">The right sorted array.</param>
         /// <remarks>complexity time O(n) and space O(n)</remarks>
-        public static void Merge(int[] arr, int[] left, int[] right)
+        private static void Merge(int[] arr, int[] left, int[] right)
         {
             int i = 0;
             int j = 0;
