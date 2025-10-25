@@ -21,11 +21,14 @@ namespace DemoHarness
             // Test sizes
             int[] sizes = { 100, 1000, 10000 };
 
-            Console.WriteLine($"{"Array Size",-12}{"BubbleSort (ms)",-20}{"MergeSort (ms)",-20}{"LinearSearch (ms)",-22}{"BinarySearch (ms)"}");
+            Console.WriteLine($"{"Array Size",-12}{"BubbleSort (µs)",-20}{"MergeSort (µs)",-20}{"LinearSearch (µs)",-22}{"BinarySearch (µs)"}");
 
             // Warm up the methods once to avoid JIT overhead on the first run
+            SortingSearchingHelpers.BubbleSort(new int[] { 3, 1, 2 });
+            SortingSearchingHelpers.MergeSort(new int[] { 3, 1, 2 });
             SortingSearchingHelpers.LinearSearch(new int[] { 1, 2, 3 }, 2);
             SortingSearchingHelpers.BinarySearch(new int[] { 1, 2, 3 }, 2);
+
 
             foreach (int size in sizes)
             {
@@ -37,13 +40,13 @@ namespace DemoHarness
                 var sw = Stopwatch.StartNew();
                 SortingSearchingHelpers.BubbleSort(arr1);
                 sw.Stop();
-                long bubbleSortTime = sw.ElapsedMilliseconds;
+                double bubbleSortMicro = sw.ElapsedTicks * (1_000_000.0 / Stopwatch.Frequency);
 
                 // MergeSort timing
                 sw.Restart();
                 SortingSearchingHelpers.MergeSort(arr2);
                 sw.Stop();
-                long mergeSortTime = sw.ElapsedMilliseconds;
+                double mergeSortMicro = sw.ElapsedTicks * (1_000_000.0 / Stopwatch.Frequency);
 
                 // Prepare sorted array for search
                 int[] sorted = (int[])arr2.Clone();
@@ -62,7 +65,7 @@ namespace DemoHarness
                 double binarySearchMicro = sw.ElapsedTicks * (1_000_000.0 / Stopwatch.Frequency);
 
                 // Output results
-                Console.WriteLine($"{size,-12}{bubbleSortTime,-20}{mergeSortTime,-20}{linearSearchMicro,-22:F2}{binarySearchMicro:F2}");
+                Console.WriteLine($"{size,-12}{bubbleSortMicro,-20:F0}{mergeSortMicro,-20:F0}{linearSearchMicro,-22:F1}{binarySearchMicro:F1}");
 
             }
         }
