@@ -23,6 +23,10 @@ namespace DemoHarness
 
             Console.WriteLine($"{"Array Size",-12}{"BubbleSort (ms)",-20}{"MergeSort (ms)",-20}{"LinearSearch (ms)",-22}{"BinarySearch (ms)"}");
 
+            // Warm up the methods once to avoid JIT overhead on the first run
+            SortingSearchingHelpers.LinearSearch(new int[] { 1, 2, 3 }, 2);
+            SortingSearchingHelpers.BinarySearch(new int[] { 1, 2, 3 }, 2);
+
             foreach (int size in sizes)
             {
                 // Generate random array
@@ -49,16 +53,17 @@ namespace DemoHarness
                 sw.Restart();
                 SortingSearchingHelpers.LinearSearch(sorted, target);
                 sw.Stop();
-                long linearSearchTime = sw.ElapsedMilliseconds;
+                double linearSearchMicro = sw.ElapsedTicks * (1_000_000.0 / Stopwatch.Frequency);
 
                 // BinarySearch timing
                 sw.Restart();
                 SortingSearchingHelpers.BinarySearch(sorted, target);
                 sw.Stop();
-                long binarySearchTime = sw.ElapsedMilliseconds;
+                double binarySearchMicro = sw.ElapsedTicks * (1_000_000.0 / Stopwatch.Frequency);
 
                 // Output results
-                Console.WriteLine($"{size,-12}{bubbleSortTime,-20}{mergeSortTime,-20}{linearSearchTime,-22}{binarySearchTime}");
+                Console.WriteLine($"{size,-12}{bubbleSortTime,-20}{mergeSortTime,-20}{linearSearchMicro,-22:F2}{binarySearchMicro:F2}");
+
             }
         }
 
