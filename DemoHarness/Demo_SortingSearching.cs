@@ -82,3 +82,11 @@ namespace DemoHarness
         }
     }
 }
+
+// Console output (timing results):
+// === Demo: Sorting and Searching Helpers ===
+//
+// Array Size   BubbleSort (µs)   MergeSort (µs)   LinearSearch (µs)   BinarySearch (µs)
+// 100          74                19               0.6                 0.2
+// 1000         1402              184              5.2                 0.2
+// 10000        142629            2828             53.0                0.3

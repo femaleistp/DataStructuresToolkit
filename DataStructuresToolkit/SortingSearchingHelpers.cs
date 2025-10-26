@@ -1,4 +1,23 @@
-﻿using System;
+﻿// MergeSort was the most technical because it required a helper method for after recursion
+// has gone through the left side of the original array and then the right side, it will
+// need to be put back together. It sends the right and left out to Merge() to be put into
+// one array in order. The easiest would have been LinearSearch() because it just searches
+// the array straight through until it finds what it is looking for or reaches the end.
+
+// BubbleSort was slow right off the bat with 100 items in the array at 74 microseconds
+// compared to MergeSort at 19. At 1000, BubbleSort took 142,629 while MergeSort took 2,828
+// microseconds. This was a huge difference even in small datasets. BinarySearch was
+// consistent at 0.2 microseconds for 100, then 1000, and 0.3 for 10000. LinearSearch took
+// much longer, about three times longer for 100 at 0.6, 5.2 for 1000, and 53 microseconds
+// for 10000. I appreciate this performance demo because it shows the difference in speed
+// between the inefficient and efficient sorting and searching algorithms.
+
+// I will decide to use the more efficient algorithms for actual work. If it were just for
+// demonstration, I would do the same and use the inefficient and efficient ones to compare.
+// In the real world efficient algorithms would be appropriate, especially for datasets that
+// scale up quickly, to be better prepared for future growth and change.
+
+using System;
 using System.Diagnostics;
 
 namespace DataStructuresToolkit
