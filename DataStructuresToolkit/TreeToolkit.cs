@@ -1,4 +1,19 @@
-﻿using System;
+﻿/*
+Brittany Hancock
+IT 415: Data Structures and Algorithms
+Instructor: Lenore Montalbano
+October 31, 2025
+Project 6: Binary Trees & BST Toolkit
+Reflection
+
+Traversal order has three different sequences for visiting nodes in a Binary Search Tree (BST). It must be a BST for the inorder traversal to appear sorted as expected. The left child is always less than the parent node, and the right child is greater. The preorder traversal is very important for mathematical expressions where one part is on the left and another on the right, so the root must be retrieved first to build it accurately. I found out that the postorder traversal is used to delete a tree because the root is visited last. It is also used in compilers.
+
+This changed my view by showing that specific traversal orders are used for different tasks and applications, and the tree must be ordered properly. I learned that height is important for understanding tree balance in operations such as deletion, insertion, and searching. It becomes crucial when there are large numbers of nodes, like millions, for efficiency.
+
+Skewed insertion matters because it takes longer to perform certain operations, as it must check all nodes on one side before the other. Even though it will still find the correct position, it will take much longer than in a balanced tree. Balance reduces wasted effort during searches, insertions, and deletions, making the process more efficient overall.
+*/
+
+using System;
 
 namespace DataStructuresToolkit
 {

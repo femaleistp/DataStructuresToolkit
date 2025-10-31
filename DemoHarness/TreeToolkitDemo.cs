@@ -13,6 +13,7 @@ namespace DemoHarness
             // Build and Test Teaching Tree
             Console.WriteLine("Building Teaching Tree...");
             TreeNode root = TreeNode.BuildTeachingTree();
+
             Console.WriteLine("\nInorder Traversal of the Teaching Tree (Left, Root, Right):");
             TreeNode.Inorder(root);
 
