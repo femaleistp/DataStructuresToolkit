@@ -90,5 +90,58 @@ namespace DataStructuresToolkit
             Postorder(node.Right);
             Console.WriteLine(node.Value + " ");
         }
+
+        /// <summary>
+        /// Calculates the height of the binary tree.
+        /// </summary>
+        /// <param name="node">The root node of the binary tree.</param>
+        /// <returns>The height of the tree.</returns>
+        /// <remarks>Complexity time O(n) and space O(h) where n is the number of nodes and h is the height of the tree.</remarks>
+        public static int Height(TreeNode node)
+        {
+            if (node == null)
+            {
+                return -1; // Height of empty tree is -1
+            }
+            int leftHeight = Height(node.Left);
+            int rightHeight = Height(node.Right);
+            return Math.Max(leftHeight, rightHeight) + 1;
+        }
+
+        /// <summary>
+        /// Calculates the depth of a target value in the binary tree.
+        /// </summary>
+        /// <param name="root">The root node of the binary tree.</param>
+        /// <param name="target">The target value to find.</param>
+        /// <returns>The depth of the target value, or -1 if not found.</returns>
+        /// <remarks>Complexity time O(n) and space O(h) where n is the number of nodes and h is the height of the tree.</remarks>
+        public static int Depth(TreeNode root, int target)
+        {
+            if (root == null)
+            {
+                return -1; // Target not found
+            }
+
+            if(root.Value == target)
+            {
+                return 0; // Target found at root
+            }
+
+            int leftDepth = Depth(root.Left, target);
+            if (leftDepth >= 0)
+            {
+                return leftDepth + 1; // Target found in left subtree
+            }
+
+            int rightDepth = Depth(root.Right, target);
+            if (rightDepth >= 0)
+            {
+                return rightDepth + 1; // Target found in right subtree
+            }
+
+            return -1; // Target not found in either subtree
+        }
+
+
     }
 }
