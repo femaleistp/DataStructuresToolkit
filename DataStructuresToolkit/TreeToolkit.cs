@@ -141,7 +141,102 @@ namespace DataStructuresToolkit
 
             return -1; // Target not found in either subtree
         }
+    }
 
+    /// <summary>
+    /// Basic Binary Search Tree (BST) implementation.
+    /// </summary>
+    public class Bst
+    {
+        /// <summary>
+        /// The root node of the BST.
+        /// </summary>
+        public TreeNode Root;
 
+        /// <summary>
+        /// Initializes a new instance of the Bst class.
+        /// </summary>
+        /// <remarks>Complexity time O(1) and space O(1).</remarks>
+        public Bst()
+        {
+            Root = null;
+        }
+
+        /// <summary>
+        /// Helper method to insert a value recursively into the BST.
+        /// </summary>
+        /// <param name="value">The integer value to insert.</param>
+        /// <remarks>Complexity time O(h) and space O(h) where h is the height of the tree.</remarks>
+        public void Insert(int value)
+        {
+            Root = InsertRecursive(Root, value);
+        }
+
+        /// <summary>
+        /// Recursively inserts a value into the BST.
+        /// </summary>
+        /// <param name="node">The current node in the BST.</param>
+        /// <param name="value">The integer value to insert.</param>
+        /// <returns>The updated node after insertion.</returns>
+        /// <remarks>Complexity time O(h) and space O(h) where h is the height of the tree.</remarks>
+        private TreeNode InsertRecursive(TreeNode node, int value)
+        {
+            if (node == null)
+            {
+                return new TreeNode(value);
+            }
+
+            if (value < node.Value)
+            {
+                node.Left = InsertRecursive(node.Left, value);
+            }
+            else if (value > node.Value)
+            {
+                node.Right = InsertRecursive(node.Right, value);
+            }
+            else
+            {
+                // Duplicate values are not allowed in this BST implementation.
+            }
+
+            return node;
+        }
+
+        /// <summary>
+        /// Checks if the BST contains a specific value.
+        /// </summary>
+        /// <param name="value">The integer value to search for.</param>
+        /// <returns>The true if the value is found; otherwise, false.</returns>
+        /// <remarks>Complexity time O(h) and space O(1) where h is the height of the tree.</remarks>
+        public bool Contains(int value)
+        {
+            TreeNode current = Root;
+            while (current != null)
+            {
+                if (value == current.Value)
+                {
+                    return true;
+                }
+                else if (value < current.Value)
+                {
+                    current = current.Left;
+                }
+                else
+                {
+                    current = current.Right;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Calculates the height of the BST.
+        /// </summary>
+        /// <returns>The height of the BST.</returns>
+        /// <remarks>Complexity time O(n) and space O(h) where n is the number of nodes and h is the height of the tree.</remarks>
+        public int Height()
+        { 
+            return TreeNode.Height(Root);   
+        }
     }
 }
