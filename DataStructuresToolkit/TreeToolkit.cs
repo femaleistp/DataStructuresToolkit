@@ -38,7 +38,7 @@ namespace DataStructuresToolkit
             TreeNode root = new TreeNode(38);
             root.Left = new TreeNode(27);
             root.Right = new TreeNode(43);
-            root.Left.Left = new TreeNode(13);
+            root.Left.Left = new TreeNode(3);
             root.Left.Right = new TreeNode(9);
             return root;
         }
