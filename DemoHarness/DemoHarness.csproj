@@ -5,7 +5,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>DemoHarness.Demo_SortingSearching</StartupObject>
+    <StartupObject>DemoHarness.TreeToolkitDemo</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
