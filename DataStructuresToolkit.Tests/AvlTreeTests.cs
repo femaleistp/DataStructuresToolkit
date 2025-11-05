@@ -58,39 +58,78 @@ namespace DataStructuresToolkit.Tests
             tree.Insert(50);
 
             // Assert
-            bool IsBalanced(AvlNode node)
-            { 
-                if (node == null)
-                {
-                    return true;
-                }
-                int balance = GetBalance(node);
-                // Checking here if the balance factor is within the allowed range [-1, 1]
-                return Math.Abs(balance) <= 1 
-                    && IsBalanced(node.Left) 
-                    && IsBalanced(node.Right);
-            }
-
-            int GetHeight(AvlNode node)
-            {
-                if (node == null)
-                {
-                    return 0;
-                }
-
-                return Math.Max(GetHeight(node.Left), GetHeight(node.Right)) + 1;
-            }
-
-            int GetBalance(AvlNode node)
-            {
-                if (node == null)
-                {
-                    return 0;
-                }
-                return GetHeight(node.Left) - GetHeight(node.Right);
-            }
-
             Assert.True(IsBalanced(tree.Root), "AVL tree is not balanced after multiple insertions");
+        }
+
+        [Fact]
+        public void GetBalance_ShouldReturnCorrectBalanceFactor()
+        {
+            // Arrange
+            var tree = new AvlTree();
+            tree.Insert(10);
+            tree.Insert(20);
+            tree.Insert(5);
+
+            // Act
+            var root = tree.Root;
+            int bf = GetBalance(root);
+
+            // Assert
+            // Left subtree has height 1 (node 5), right subtree has height 1 (node 20), so balance factor is 0
+            Assert.Equal(0, bf); // The tree should be balanced
+        }
+
+        
+        // Helper methods 
+
+        /// <summary>
+        /// Helper method to check if the tree is balanced.
+        /// </summary>
+        /// <param name="node">The current node.</param>
+        /// <returns>The balance status of the tree.</returns>
+        /// <remarks>Complexity time O(n) and space O(h) where n is the number of nodes in the tree and h is the height of the tree.</remarks>
+        private static bool IsBalanced(AvlNode node)
+        {
+            if (node == null)
+            {
+                return true;
+            }
+            int balance = GetBalance(node);
+            // Checking here if the balance factor is within the allowed range [-1, 1]
+            return Math.Abs(balance) <= 1
+                && IsBalanced(node.Left)
+                && IsBalanced(node.Right);
+        }
+
+        /// <summary>
+        /// Helper method to get the height of a node.
+        /// </summary>
+        /// <param name="node">The node to get the height for.</param>
+        /// <returns>The height of the node.</returns>
+        /// <remarks>Complexity time O(n) and space O(h) where n is the number of nodes in the tree and h is the height of the tree.</remarks>
+        private static int GetHeight(AvlNode node)
+        {
+            if (node == null)
+            {
+                return 0;
+            }
+
+            return Math.Max(GetHeight(node.Left), GetHeight(node.Right)) + 1;
+        }
+
+        /// <summary>
+        /// Helper method to get the balance factor of a node.
+        /// </summary>
+        /// <param name="node">The node to get the balance factor for.</param>
+        /// <returns>The balance factor of the node.</returns>
+        /// <remarks>Complexity time O(n) and space O(h) where n is the number of nodes in the tree and h is the height of the tree.</remarks>
+        private static int GetBalance(AvlNode node)
+        {
+            if (node == null)
+            {
+                return 0;
+            }
+            return GetHeight(node.Left) - GetHeight(node.Right);
         }
     }
 
