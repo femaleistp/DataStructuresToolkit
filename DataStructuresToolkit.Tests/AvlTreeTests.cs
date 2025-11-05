@@ -93,4 +93,25 @@ namespace DataStructuresToolkit.Tests
             Assert.True(IsBalanced(tree.Root), "AVL tree is not balanced after multiple insertions");
         }
     }
+
+    public class AvlTreeHeightTests
+    {
+        [Fact]
+        public void Insert_ShouldMaintainCorrectNodeHeights()
+        {
+            // Arrange
+            var tree = new AvlTree();
+
+            // Act
+            tree.Insert(10);
+            tree.Insert(20);
+            tree.Insert(30);
+
+            // Assert
+            Assert.Equal(2, tree.Root.Height);          // Root should be height of 2
+            Assert.Equal(1, tree.Root.Left.Height);     // Left child should be height of 1
+            Assert.Equal(1, tree.Root.Right.Height);    // Right child should be height of 1 
+        }
+
+    }
 }

@@ -90,7 +90,7 @@ namespace DataStructuresToolkit
             }
 
             // Update height of this ancestor node
-            node.Height = 1 + Math.Max(GetHeight(node.Left), GetHeight(node.Right));
+            UpdateHeight(node);
 
             // Get the balance factor
             int balance = GetBalance(node);
@@ -141,6 +141,16 @@ namespace DataStructuresToolkit
         }
 
         /// <summary>
+        /// Updates the height of a node based on its children's heights.
+        /// </summary>
+        /// <param name="node">The node to update.</param>
+        /// <remarks>Complexity time O(1) and space O(1).</remarks>
+        public void UpdateHeight(AvlNode node)
+        {
+            node.Height = 1 + Math.Max(GetHeight(node.Left), GetHeight(node.Right));
+        }
+
+        /// <summary>
         /// Performs a right rotation on the given node.
         /// </summary>
         /// <param name="y">The node to rotate.</param>
@@ -154,8 +164,8 @@ namespace DataStructuresToolkit
             x.Right = y;
             y.Left = T2;
             // Update heights
-            y.Height = Math.Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
-            x.Height = Math.Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
+            UpdateHeight(y);
+            UpdateHeight(x);
             // Return new root
             return x;
         }
@@ -174,8 +184,8 @@ namespace DataStructuresToolkit
             y.Left = x;
             x.Right = T2;
             // Update heights
-            x.Height = Math.Max(GetHeight(x.Left), GetHeight(x.Right)) + 1;
-            y.Height = Math.Max(GetHeight(y.Left), GetHeight(y.Right)) + 1;
+            UpdateHeight(x);
+            UpdateHeight(y);
             // Return new root
             return y;
         }
