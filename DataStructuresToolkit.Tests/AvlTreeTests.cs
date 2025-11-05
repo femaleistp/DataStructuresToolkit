@@ -72,7 +72,7 @@ namespace DataStructuresToolkit.Tests
 
             // Act
             var root = tree.Root;
-            int bf = GetBalance(root);
+            int bf = tree.GetBalance(root);
 
             // Assert
             // Left subtree has height 1 (node 5), right subtree has height 1 (node 20), so balance factor is 0
@@ -94,42 +94,12 @@ namespace DataStructuresToolkit.Tests
             {
                 return true;
             }
-            int balance = GetBalance(node);
+            var tempTree = new AvlTree();
+            int balance = tempTree.GetBalance(node);
             // Checking here if the balance factor is within the allowed range [-1, 1]
             return Math.Abs(balance) <= 1
                 && IsBalanced(node.Left)
                 && IsBalanced(node.Right);
-        }
-
-        /// <summary>
-        /// Helper method to get the height of a node.
-        /// </summary>
-        /// <param name="node">The node to get the height for.</param>
-        /// <returns>The height of the node.</returns>
-        /// <remarks>Complexity time O(n) and space O(h) where n is the number of nodes in the tree and h is the height of the tree.</remarks>
-        private static int GetHeight(AvlNode node)
-        {
-            if (node == null)
-            {
-                return 0;
-            }
-
-            return Math.Max(GetHeight(node.Left), GetHeight(node.Right)) + 1;
-        }
-
-        /// <summary>
-        /// Helper method to get the balance factor of a node.
-        /// </summary>
-        /// <param name="node">The node to get the balance factor for.</param>
-        /// <returns>The balance factor of the node.</returns>
-        /// <remarks>Complexity time O(n) and space O(h) where n is the number of nodes in the tree and h is the height of the tree.</remarks>
-        private static int GetBalance(AvlNode node)
-        {
-            if (node == null)
-            {
-                return 0;
-            }
-            return GetHeight(node.Left) - GetHeight(node.Right);
         }
     }
 

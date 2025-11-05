@@ -116,7 +116,7 @@ namespace DataStructuresToolkit
         /// <param name="node">The node to get the height of.</param>
         /// <returns>The height of the node.</returns>
         /// <remarks>Complexity time O(1) and space O(1).</remarks>
-        private int GetHeight(AvlNode node)
+        public int GetHeight(AvlNode node)
         {
             if (node == null)
             {
@@ -131,7 +131,7 @@ namespace DataStructuresToolkit
         /// <param name="node">The node to calculate the balance factor for.</param>
         /// <returns>The balance factor of the node.</returns>
         /// <remarks>Complexity time O(1) and space O(1).</remarks>
-        private int GetBalance(AvlNode node)
+        public int GetBalance(AvlNode node)
         {
             if (node == null)
             {
