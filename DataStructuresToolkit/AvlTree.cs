@@ -24,6 +24,47 @@ namespace DataStructuresToolkit
         }
 
         /// <summary>
+        /// Helper method to check if a key exists in the tree.
+        /// </summary>
+        /// <param name="key">The key to search for.</param>
+        /// <returns>The node if found; otherwise, null.</returns>
+        /// <remarks>Complexity time O(log n) and space O(log n) where n is the number of nodes in the tree.</remarks>
+        public bool Contains(int key)
+        { 
+            return ContainsNode(Root, key);
+        }
+
+        /// <summary>
+        /// Helper method to check if a key exists in the subtree rooted at the given node.
+        /// </summary>
+        /// <param name="node">The current node.</param>
+        /// <param name="key">The key to search for.</param>
+        /// <returns>The node if found; otherwise, null.</returns>
+        /// <remarks>Complexity time O(log n) and space O(log n) where n is the number of nodes in the tree.</remarks>
+        private bool ContainsNode(AvlNode node, int key)
+        { 
+            if (node == null)
+            {
+                return false;
+            }
+
+            if (key == node.Key)
+            {
+                return true;
+            }
+
+            if (key < node.Key)
+            {
+                return ContainsNode(node.Left, key);
+            }
+
+            else
+            {
+                return ContainsNode(node.Right, key);
+            }
+        }
+
+        /// <summary>
         /// Helper method to insert a node and perform rotations if necessary.
         /// </summary>
         /// <param name="node">The current node.</param>
