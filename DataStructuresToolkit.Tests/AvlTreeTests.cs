@@ -42,5 +42,55 @@ namespace DataStructuresToolkit.Tests
             Assert.True(exists5);
             Assert.False(exists15);
         }
+
+        [Fact]
+        public void Insert_ShouldKeepTreeBalanced_AfterMultipleInsertions()
+        {
+            // Arrange
+            var tree = new AvlTree();
+
+            // Act
+            tree.Insert(30);
+            tree.Insert(20);
+            tree.Insert(10);
+            tree.Insert(25);
+            tree.Insert(40);
+            tree.Insert(50);
+
+            // Assert
+            bool IsBalanced(AvlNode node)
+            { 
+                if (node == null)
+                {
+                    return true;
+                }
+                int balance = GetBalance(node);
+                // Checking here if the balance factor is within the allowed range [-1, 1]
+                return Math.Abs(balance) <= 1 
+                    && IsBalanced(node.Left) 
+                    && IsBalanced(node.Right);
+            }
+
+            int GetHeight(AvlNode node)
+            {
+                if (node == null)
+                {
+                    return 0;
+                }
+
+                return Math.Max(GetHeight(node.Left), GetHeight(node.Right)) + 1;
+            }
+
+            int GetBalance(AvlNode node)
+            {
+                if (node == null)
+                {
+                    return 0;
+                }
+                return GetHeight(node.Left) - GetHeight(node.Right);
+            }
+
+            Assert.True(IsBalanced(tree.Root), "AVL tree is not balanced after multiple insertions");
+        }
     }
 }
