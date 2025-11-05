@@ -106,8 +106,36 @@ namespace DataStructuresToolkit
             {
                 return RotateRight(node);
             }
+
+            // Case 3: Right Left (perform right rotation on right child, then left rotation)
+            if (balance > 1 && key > node.Left.Key)
+            {
+                node.Left = RotateLeft(node.Left);
+                return RotateRight(node);
+            }
+
+            // Case 4: Left Right (perform left rotation on left child, then right rotation)
+            if (balance < -1 && key < node.Right.Key)
+            {
+                node.Right = RotateRight(node.Right);
+                return RotateLeft(node);
+            }
             // No rotation needed
             return node;
+        }
+
+        public void PrintTree(AvlNode node, string indent = "", string position = "Root")
+        {
+            if (node == null)
+            {
+                return;
+            }
+
+            int bf = GetBalance(node);
+            Console.WriteLine($"{indent}- {position}: {node.Key} (BF: {bf})");
+
+            PrintTree(node.Left, indent + "  ", "Left child");
+            PrintTree(node.Right, indent + "  ", "Right child");
         }
 
         /// <summary>

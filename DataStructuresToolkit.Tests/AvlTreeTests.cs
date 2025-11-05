@@ -2,6 +2,13 @@
 using DataStructuresToolkit;
 namespace DataStructuresToolkit.Tests
 {
+    [CollectionDefinition("ConsoleTests", DisableParallelization = true)]
+    public class ConsoleTestCollection
+    { 
+    
+    }
+
+    [Collection("ConsoleTests")]
     public class AvlTreeTests
     {
         [Fact]
@@ -79,7 +86,29 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(0, bf); // The tree should be balanced
         }
 
-        
+        [Fact]
+        public void PrintTree_ShouldDisplayKeysAndBalanceFactors()
+        {
+            // Arrange
+            var tree = new AvlTree();
+            tree.Insert(10);
+            tree.Insert(20);
+            tree.Insert(30);
+
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+
+            // Act
+            tree.PrintTree(tree.Root);
+            var output = sw.ToString();
+            // Assert
+            Assert.Contains("Root: 20", output);
+            Assert.Contains("Left child: 10", output);
+            Assert.Contains("Right child: 30", output);
+            Assert.Contains("BF:", output);
+        }
+
+
         // Helper methods 
 
         /// <summary>
