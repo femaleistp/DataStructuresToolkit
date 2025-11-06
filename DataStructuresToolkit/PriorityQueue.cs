@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace DataStructuresToolkit
 {
+    /// <summary>
+    /// A simple implementation of a priority queue using a binary heap.
+    /// </summary>
     public class PriorityQueue
     {
         private readonly List<int> _heap = new List<int>();
@@ -16,6 +19,30 @@ namespace DataStructuresToolkit
         {
             _heap.Add(value);
             // Todo: implement bubble up: HeapifyUp(_heap.Count - 1);
+            HeapifyUp(_heap.Count - 1);
+        }
+
+        /// <summary>
+        /// Bubbles up the element at the specified index to maintain the heap property.
+        /// </summary>
+        /// <param name="index">The index of the element to bubble up.</param>
+        /// <remarks>Complexity time O(log n) and space O(1).</remarks>
+        private void HeapifyUp(int index)
+        {
+            while (index > 0)
+            { 
+                int parentIndex = (index - 1) / 2;
+                if (_heap[index] >= _heap[parentIndex])
+                {
+                    break;
+                }
+
+                // Swap child and parent
+                int temp = _heap[index];
+                _heap[index] = _heap[parentIndex];
+                _heap[parentIndex] = temp;
+                index = parentIndex;
+            }    
         }
 
         /// <summary>
@@ -29,8 +56,56 @@ namespace DataStructuresToolkit
             if (_heap.Count == 0)
                 throw new InvalidOperationException("Priority queue is empty.");
 
-            // Todo: implement bubble down (heapify down)
-            return _heap[0];
+            // Heapify down not implemented yet, so just remove the root for now
+            int minValue = _heap[0];
+            int lastValue = _heap[_heap.Count - 1];
+
+            _heap.RemoveAt(_heap.Count - 1);
+
+            if (_heap.Count > 0)
+            {
+                _heap[0] = lastValue;
+                HeapifyDown(0);
+            }
+            return minValue;
+        }
+
+        /// <summary>
+        /// Bubbles down the element at the specified index to maintain the heap property.
+        /// </summary>
+        /// <param name="index">The index of the element to bubble down.</param>
+        /// <remarks>Complexity time O(log n) and space O(1).</remarks>
+        private void HeapifyDown(int index)
+        {
+            int lastIndex = _heap.Count - 1;
+
+            while (true)
+            {
+                int left = 2 * index + 1;
+                int right = 2 * index + 2;
+                int smallest = index;
+
+                if (left <= lastIndex && _heap[left] < _heap[smallest])
+                {
+                    smallest = left;
+                }
+
+                if (right <= lastIndex && _heap[right] < _heap[smallest])
+                {
+                    smallest = right;
+                }
+                if (smallest == index)
+                {
+                    break;
+                }
+
+                // Swap
+                int temp = _heap[index];
+                _heap[index] = _heap[smallest];
+                _heap[smallest] = temp;
+
+                index = smallest;
+            }
         }
 
         /// <summary>
