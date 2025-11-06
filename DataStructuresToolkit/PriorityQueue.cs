@@ -18,8 +18,8 @@ namespace DataStructuresToolkit
         public void Enqueue(int value)
         {
             _heap.Add(value);
-            // Todo: implement bubble up: HeapifyUp(_heap.Count - 1);
-            HeapifyUp(_heap.Count - 1);
+            // Bubble up the newly added element to maintain the heap property
+            HeapifyUp(_heap.Count - 1); 
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace DataStructuresToolkit
             while (index > 0)
             { 
                 int parentIndex = (index - 1) / 2;
-                if (_heap[index] >= _heap[parentIndex])
+                if (_heap[index] >= _heap[parentIndex]) 
                 {
                     break;
                 }
@@ -56,7 +56,7 @@ namespace DataStructuresToolkit
             if (_heap.Count == 0)
                 throw new InvalidOperationException("Priority queue is empty.");
 
-            // Heapify down not implemented yet, so just remove the root for now
+            // Get the min value (root of the heap)
             int minValue = _heap[0];
             int lastValue = _heap[_heap.Count - 1];
 
@@ -83,7 +83,7 @@ namespace DataStructuresToolkit
             {
                 int left = 2 * index + 1;
                 int right = 2 * index + 2;
-                int smallest = index;
+                int smallest = index;  
 
                 if (left <= lastIndex && _heap[left] < _heap[smallest])
                 {

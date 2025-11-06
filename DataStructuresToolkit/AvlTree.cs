@@ -1,4 +1,36 @@
-﻿using System;
+﻿/*
+Brittany Hancock
+IT 415: Data Structures and Algorithms
+Instructor: Lenore Montalbano
+November 6, 2025
+Project 7: Balanced Trees and Priority Queues Toolkit
+Reflection
+
+After creating an AVLTree object, we use the Insert method to add an int key. That immediately 
+calls the private InsertNode method, where we send the current root and new key. If the root is 
+null, it creates a new node and returns it as the root. If the key is less than the current root 
+key, it recurses left; if greater, it goes right. After inserting, it updates the height and 
+checks the balance factor. There are four rotation cases depending on whether the imbalance is 
+left-left, right-right, left-right, or right-left. If no rotation is needed, it returns the node. 
+This process repeats for every insert.
+
+I created the first test, Insert_ShouldBalance_AfterRotation(), before the AVLTree class or 
+methods existed. I inserted 10, 20, and 30 to force imbalance. With 10 as root, 20 goes right, 
+and 30 goes right-right, requiring a rotation. The rotation corrected the balance, making 20 the 
+root, 10 the left child, and 30 the right child.
+
+AVL uses node objects, while PriorityQueue stores integers in a list. The heap is simpler, using 
+HeapifyUp to bubble values up when enqueueing and HeapifyDown to push larger ones down when 
+dequeuing. It’s a min heap, so the smallest value becomes the root. Heapify maintains order, while 
+AVL rotations restructure the tree when imbalance occurs.
+
+In a real project, I would use the AVL tree because most real-world needs involve searching. 
+O(log n) time is much more scalable than looping through data. AVL trees can store complex objects 
+and rebalance automatically after inserts or deletions.
+*/
+
+
+using System;
 
 namespace DataStructuresToolkit
 {
