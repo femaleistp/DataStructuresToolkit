@@ -1,174 +1,243 @@
-# DataStructuresToolkit
-**Author:** Brittany Hancock  
-**Course:** IT 415 Data Structures and Algorithms  
-**Term:** Fall 2025  
-**Instructor:** Lenore Montalbano  
+# DataStructuresToolkit  
+Author: Brittany Hancock  
+Course: IT 415 Data Structures and Algorithms  
+Term: Fall 2025  
+Instructor: Lenore Montalbano  
 
----
+============================================================
 
 ## Overview
-The **DataStructuresToolkit** project is a C# solution demonstrating key data structure and algorithm concepts using reusable, testable modules.  
-It includes arrays, lists, stacks, queues, recursion, sorting, and searching examples — each with time complexity analysis and console demos.  
-All modules are documented with XML comments and tested using xUnit.  
-The toolkit now also includes **performance measurement utilities** that time algorithms in microseconds and apply **JIT warm-up** to improve accuracy.
+This toolkit is a collection of data structures and algorithms implemented in C Sharp to demonstrate how each structure behaves, how operations work internally, and how complexity affects performance. The project includes arrays, lists, strings, stacks, queues, recursion, sorting, searching, binary trees, BSTs, AVL trees, priority queues, simple hash tables, associative containers, and console demos. Each module includes XML documentation, validation, and complexity notes. All major components are supported with xUnit tests.
 
----
+============================================================
 
 ## Project Structure
-**DataStructuresToolkit** – main class library containing all data structure and algorithm files.  
-**DataStructuresToolkit.Tests** – xUnit test project verifying correctness and edge cases.  
-**DemoHarness** – console demo application that runs and compares algorithms visually and through timing output.
+DataStructuresToolkit contains the main library with all data structure and algorithm modules.  
+DataStructuresToolkit.Tests contains xUnit tests for verification.  
+DemoHarness contains console demos that visualize operations and show timing output.
 
----
+============================================================
 
-## ArrayStringListHelpers.cs
-Purpose: Helper methods for arrays, strings, and lists.
+## ArrayStringListHelpers
+Provides helper methods for arrays, strings, and lists based on common operations.
 
-**Key Methods:**  
-- `InsertIntoArray` – shifts items right and overwrites the last element.  
-- `DeleteFromArray` – shifts items left and clears the last slot.  
-- `ConcatenateNamesNaive` – joins names using string concatenation (`+=`) **O(n²)**.  
-- `ConcatenateNamesBuilder` – joins names using `StringBuilder` **O(n)**.  
-- `CapitalizeEachName` – capitalizes the first letter of each word.  
-- `InsertIntoList` – inserts an integer into a `List<int>` at a specific index.
+Key Methods  
+InsertIntoArray shifts elements to the right and overwrites the last slot.  
+DeleteFromArray shifts left and clears the tail.  
+ConcatenateNamesNaive joins names using string concatenation and demonstrates O(n²).  
+ConcatenateNamesBuilder joins names efficiently using StringBuilder.  
+CapitalizeEachName formats words to uppercase first letters.  
+InsertIntoList inserts items at any index in a List<int>.
 
-**Complexity Summary:**  
-- Insert/Delete: O(n) time, O(1) space.  
-- Concatenation (StringBuilder): O(n) time, O(n) space.  
-All methods include parameter validation and XML documentation.
+Complexity  
+Array insert and delete are O(n) time and constant space.  
+StringBuilder concatenation is O(n).  
+List inserts in the middle are O(n).
 
----
+============================================================
 
-## ComplexityTester.cs
-Purpose: Demonstrates growth rates under constant, linear, and quadratic conditions.
+## ComplexityTester
+Shows constant, linear, and quadratic growth with timing output.
 
-**Key Methods:**  
-- `RunConstantScenario` – O(1) using n(n+1)/2 formula.  
-- `RunLinearScenario` – O(n) using a single loop.  
-- `RunQuadraticScenario` – O(n²) using nested loops.
+RunConstantScenario uses n(n+1)/2 and stays O(1).  
+RunLinearScenario loops from 1 to n and is O(n).  
+RunQuadraticScenario uses nested loops and reaches O(n²).
 
-**Use:**  
-Displays elapsed time in milliseconds for side-by-side comparison.  
-Provides foundational understanding of algorithmic efficiency.
+The purpose is to make growth rates visible through console timing.
 
----
+============================================================
 
-## MyStack.cs
-Purpose: Implements a dynamic **stack (LIFO)** with automatic resizing.
+## MyStack
+A generic LIFO stack with resizing.
 
-**Main Methods:**  
-- `Push` – adds an item to the top.  
-- `Pop` – removes and returns the top item.  
-- `Peek` – returns the top item without removing it.  
-- `Count` – returns the number of items currently stored.
+Methods  
+Push adds an item to the top and resizes when needed.  
+Pop removes and returns the top item.  
+Peek returns the top item without removing it.  
+Count returns the number of stored items.
 
-**Behavior:**  
-Resizes when full; supports undo/redo functionality.  
+Complexity  
+Push and Pop are amortized O(1).  
+Resize is O(n).  
+Memory use is O(n).
 
-**Complexity:**  
-Push/Pop/Peek: O(1) average case; Resize: O(n).
+============================================================
 
----
+## MyQueue
+A generic FIFO queue using a circular array with automatic resizing.
 
-## MyQueue.cs
-Purpose: Implements a **circular queue (FIFO)** that grows automatically.
+Methods  
+Enqueue adds to the back.  
+Dequeue removes from the front.  
+Peek returns the front item.  
+Count returns the number of stored items.
 
-**Main Methods:**  
-- `Enqueue` – adds an item to the back.  
-- `Dequeue` – removes and returns the front item.  
-- `Peek` – returns the front item without removing it.  
-- `Count` – number of items currently in queue.
+Behavior  
+Head and tail wrap around.  
+Resize preserves order and doubles capacity.
 
-**Behavior:**  
-Automatically doubles capacity when full; wraps indices circularly.
+Complexity  
+Enqueue and Dequeue are amortized O(1).  
+Resize is O(n).
 
-**Complexity:**  
-Enqueue/Dequeue/Peek: O(1); Resize: O(n).
+============================================================
 
----
+## RecursionHelpers
+Three recursion examples showing mathematical, problem solving, and structural recursion.
 
-## RecursionHelpers.cs
-Purpose: Demonstrates three recursion types.
+Factorial calculates n factorial with a base case of zero.  
+IsPalindrome checks a string by comparing ends and calling recursion on the substring.  
+CountFilesRecursively walks a directory and subdirectories counting files.
 
-**Mathematical Recursion:**  
-- `Factorial(int n)` – computes n! recursively.
+Complexity  
+Factorial and palindrome are O(n) time and O(n) space.  
+Directory traversal is O(n) time and O(d) space.
 
-**Problem-Solving Recursion:**  
-- `IsPalindrome(string s)` – checks if a string reads the same forward and backward.
+============================================================
 
-**Structural Recursion:**  
-- `CountFilesRecursively(string path)` – counts files in subdirectories.
+## SortingSearchingHelpers
+Implements two sorting algorithms and two searching algorithms.
 
-**Complexity:**  
-Factorial / Palindrome: O(n) time, O(n) space.  
-Directory traversal: O(n) time, O(d) space where d = depth.
+BubbleSort is quadratic and uses pairwise swaps.  
+MergeSort divides data, sorts both halves, and merges them back together.  
+LinearSearch scans from left to right.  
+BinarySearch performs logarithmic search on sorted input.
 
----
+Enhancements  
+Timing measurements use microseconds.  
+JIT warm up prevents first call timing distortion.  
+Formatting makes comparisons readable.
 
-## SortingSearchingHelpers.cs
-Purpose: Implements and compares **sorting and searching algorithms**.
+Complexity  
+BubbleSort O(n²)  
+MergeSort O(n log n)  
+LinearSearch O(n)  
+BinarySearch O(log n)
 
-**Sorting Algorithms:**  
-- `BubbleSort(int[] arr)` – O(n²)  
-- `MergeSort(int[] arr)` – O(n log n)
+============================================================
 
-**Searching Algorithms:**  
-- `LinearSearch(int[] arr, int target)` – O(n)  
-- `BinarySearch(int[] arr, int target)` – O(log n)
+## TreeToolkit and TreeNode
+Provides a simple binary tree with traversal and height utilities.
 
-**Enhancements (Oct 2025):**  
-- Converted timing to **microseconds (µs)** for higher precision.  
-- Added **JIT warm-up** runs for BubbleSort, MergeSort, LinearSearch, and BinarySearch to remove first-call timing spikes.  
-- Improved console output formatting (`F1` for sorts, `F0` for searches).  
-- Titles updated from milliseconds to **microseconds** in the table header.  
+Features  
+BuildTeachingTree creates a fixed structure for demonstration.  
+Inorder, Preorder, and Postorder traverse the tree.  
+Height returns the maximum depth.  
+Depth finds the level of a specific value.
 
----
+Complexity  
+Traversal is O(n) time and O(h) space.
+
+============================================================
+
+## Binary Search Tree (BST)
+A standard BST with integer values.
+
+Insert places values recursively based on ordering.  
+Contains checks for membership.  
+Height returns tree height.
+
+Complexity  
+Average case O(log n) for insert and search.  
+Worst case O(n) for skewed trees.
+
+============================================================
+
+## AVL Tree
+A self balancing binary search tree with rotations.
+
+Features  
+Insert performs standard BST insertion then checks balance.  
+Contains searches recursively.  
+PrintTree displays node values with balance factors.  
+GetHeight returns node height.  
+GetBalance calculates height differences.  
+RotateLeft and RotateRight rebalance the tree when needed.
+
+Rotation Cases  
+Left Left  
+Right Right  
+Left Right  
+Right Left  
+
+Complexity  
+Insert and search are O(log n).  
+Rotations are O(1).
+
+============================================================
+
+## Priority Queue
+A min heap storing integers.
+
+Enqueue inserts and bubbles up the value.  
+Dequeue removes the root and bubbles down.  
+HeapifyUp and HeapifyDown keep heap order.  
+Count returns the number of items.
+
+Complexity  
+Insert and remove run in O(log n).  
+Space is O(n).
+
+============================================================
+
+## SimpleHashTable
+A basic hash table using chaining with List<int> buckets.
+
+Insert computes key modulus bucket length and adds only if the key is not already present.  
+Contains checks whether a key exists in its mapped bucket.  
+PrintTable displays the contents of each bucket.
+
+Complexity  
+Average case O(1) for insert and contains.  
+Worst case O(n) with many collisions.
+
+============================================================
+
+## AssociativeHelpers
+Helpers showing built in containers.
+
+BuildPhoneBook returns a Dictionary<string,string>.  
+BuildFruitSet returns a HashSet<string> and shows that duplicates are ignored.
+
+============================================================
 
 ## DemoHarness
-### Demo_StacksQueues.cs
-Simulates stack and queue operations in real-world use cases:
-1. **Undo History (Stack)** – text editing simulation with reversible changes.  
-2. **Print Queue (Queue)** – demonstrates job ordering and processing.  
-3. **Performance Test** – compares MyStack and MyQueue runtime in microseconds.
+Provides console demos for stacks and queues, sorting and searching, and tree operations.
 
-### Demo_SortingSearching.cs
-New console demo comparing algorithm performance.
+Demo_StacksQueues  
+Simulates undo history using MyStack and a print queue using MyQueue.  
+Includes a performance test comparing stack and queue operations.
 
-**Features:**  
-- Measures BubbleSort, MergeSort, LinearSearch, and BinarySearch across multiple input sizes (100, 1000, 10000).  
-- Reports execution times in **microseconds (µs)**.  
-- Includes **JIT warm-up** calls for accurate results.  
-- Outputs tabular summary for easy comparison.
+Demo_SortingSearching  
+Compares BubbleSort, MergeSort, LinearSearch, and BinarySearch on arrays of size 100, 1000, and 10000.  
+Outputs timing in microseconds after JIT warm up.
 
-**Sample Output:**
+TreeToolkitDemo  
+Runs all tree operations, prints traversals, calculates heights, and demonstrates BST and skewed tree behavior.
 
-=== Demo: Sorting and Searching Helpers ===
+============================================================
 
-Array Size BubbleSort (µs) MergeSort (µs) LinearSearch (µs) BinarySearch (µs)  
-100 88 25 0.7 0.3  
-1000 1625 192 5.2 0.2  
-10000 156097 2823 53.5 0.3  
-
----
 ## Testing
-All algorithms are validated using xUnit.
+All modules are tested with xUnit.
 
-**Test Files:**
-- ArrayStringListHelpers_Tests.cs  
-- ComplexityTester_Tests.cs  
-- MyStackTests.cs  
-- MyQueueTests.cs  
-- RecursionHelpersTests.cs  
-- SortingSearchingHelpers_Tests.cs *(planned for extension)*  
+Tests include  
+ArrayStringListHelpers_Tests  
+ComplexityTester_Tests  
+MyStackTests  
+MyQueueTests  
+RecursionHelpersTests  
+SortingSearchingHelpers tests planned  
+TreeToolkit tests inside demos  
+Bst tests inside traversal checks  
+AvlTreeTests and AvlTreeHeightTests  
+PriorityQueueTests  
+SimpleHashTable_Tests  
+AssociativeHelpers_Tests  
 
-**Results:**
-- All existing tests pass successfully.  
-- New demos verified manually in console runs.
+Test Coverage  
+Insert, delete, resizing, wraparound, negative cases, exceptions, comparisons, height validation, and balancing logic.
 
----
+============================================================
 
-## Reflection
-Developing this toolkit deepened my understanding of how data structures and algorithms differ in behavior and efficiency.  
-Through direct timing experiments, I learned how sorting scales with n, and how search algorithms differ logarithmically and linearly.  
-Implementing warm-up calls showed how JIT compilation can distort first-run performance, while measuring in microseconds revealed subtle efficiency differences otherwise hidden in milliseconds.  
-This project now provides both theoretical and empirical insight into algorithm performance — bridging classroom concepts with practical benchmarking.
+## Project Reflection
+Building this toolkit helped me understand how each structure works internally and how complexity changes the performance of an operation. Implementing both naive and efficient algorithms made the differences visible, especially when timing the results in microseconds. The stack and queue demos gave me a clearer picture of how LIFO and FIFO behave in real scenarios. Recursion forced me to think in terms of base c

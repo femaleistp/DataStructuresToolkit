@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace DataStructuresToolkit
 {
+    /// <summary>
+    /// Helper methods for associative containers like Dictionary and HashSet.
+    /// </summary>
     public static class AssociativeHelpers
     {
         /// <summary>

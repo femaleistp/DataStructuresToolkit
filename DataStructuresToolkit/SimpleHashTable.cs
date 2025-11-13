@@ -1,4 +1,39 @@
-﻿using System;
+﻿/*
+ * Brittany Hancock
+ * IT 415: Data Structures and Algorithms
+ * Instructor: Lenore Montalbano
+ * November 13, 2025
+ * Project 8: Hash Tables & Associative Containers Toolkit
+ * Reflection
+ * 
+ * While building my SimpleHashTable, I learned that collisions happen whenever
+ * more than one item is mapped to the same bucket. In our case, the hash is
+ * based on taking the key modulus the bucket length, so keys like 12, 22, and
+ * 37 all go into the same bucket. I also learned that collisions are normal,
+ * not errors. The important part is having a clear way to handle them. With
+ * chaining, each bucket stores a list, and new items are added only if they
+ * are not already present.
+ *
+ * Writing the Insert method helped me understand the sequence: find the correct
+ * bucket, check whether the key already exists, and then either return or add it
+ * to the end of the list. Writing the Contains method showed me how it again
+ * finds the correct bucket using the modulus and then checks the list for the
+ * key. This made it easier to see exactly what the hash table does step by step.
+ *
+ * Working with Dictionary and HashSet helped me compare my simple structure to
+ * the built-in ones. Dictionary stores key–value pairs and handles hashing,
+ * collisions, duplicates, and resizing internally. HashSet makes sure no item
+ * is added more than once. These built-in containers handle much more than my
+ * basic version and are what I would use in a real project because they are
+ * already optimized and dependable.
+ *
+ * Even though I would normally use built-in structures, creating my own hash
+ * table helped me understand the mechanics of hashing, collisions, and lookup
+ * behavior
+ */
+
+
+using System;
 using System.Collections.Generic;
 
 namespace DataStructuresToolkit
