@@ -15,7 +15,7 @@ Skewed insertion matters because it takes longer to perform certain operations, 
 
 using System;
 
-namespace DataStructuresToolkit
+namespace DataStructuresToolkit.Trees
 {
     /// <summary>
     /// Contains basic binary tree and BST implementation with traversal and height utilities.

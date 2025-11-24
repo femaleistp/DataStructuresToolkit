@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataStructuresToolkit
+namespace DataStructuresToolkit.Arrays
 {
     /// <summary>
     /// Array, string, and list helper methods based on Lab 2 logic.

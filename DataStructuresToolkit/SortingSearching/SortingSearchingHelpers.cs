@@ -20,7 +20,7 @@
 using System;
 using System.Diagnostics;
 
-namespace DataStructuresToolkit
+namespace DataStructuresToolkit.SortingSearching
 {
     /// <summary>
     /// Helper methods for sorting and searching algorithms.

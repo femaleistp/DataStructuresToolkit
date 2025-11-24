@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace DataStructuresToolkit
+namespace DataStructuresToolkit.SortingSearching
 {
     public class RecursionHelpers
     {

@@ -36,7 +36,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataStructuresToolkit
+namespace DataStructuresToolkit.HashTables
 {
     /// <summary>
     /// A simple hash table implementation with basic operations.

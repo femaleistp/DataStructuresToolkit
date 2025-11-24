@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DataStructuresToolkit
+namespace DataStructuresToolkit.HashTables
 {
     /// <summary>
     /// Helper methods for associative containers like Dictionary and HashSet.

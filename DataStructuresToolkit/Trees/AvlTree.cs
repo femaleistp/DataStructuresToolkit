@@ -32,7 +32,7 @@ and rebalance automatically after inserts or deletions.
 
 using System;
 
-namespace DataStructuresToolkit
+namespace DataStructuresToolkit.Trees
 {
     /// <summary>
     /// Represents an AVL tree, a self-balancing binary search tree.
