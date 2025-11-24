@@ -84,12 +84,26 @@ namespace DataStructuresToolkit
             return result.ToArray();
         }
 
-        // stubs for tdd
-
+        /// <summary>
+        /// Checks if the linked list contains a node with the specified value.
+        /// </summary>
+        /// <param name="value">The value to search for.</param>
+        /// <returns>The true if the value is found; otherwise, false.</returns>
+        /// <remarks>Complexity time O(n) and space O(1)</remarks>
         public bool Contains(T value)
         {
-            // TODO: implement Contains method
-            throw new NotImplementedException(); 
+            var current = Head;
+
+            while (current != null)
+            {
+                if (current.Data.Equals(value))
+                {
+                    return true;
+                }
+
+                current = current.Next;
+            }
+            return false;
         }
     }
 }
