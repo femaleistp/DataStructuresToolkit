@@ -7,6 +7,10 @@ using System.Security.Policy;
 
 namespace DataStructuresToolkit.LinkedLists
 {
+    /// <summary>
+    /// A simple implementation of a doubly linked list.
+    /// </summary>
+    /// <typeparam name="T">The type of elements stored in the linked list.</typeparam>
     public class DoublyLinkedList<T>
     {
         public DoublyNode<T> Head { get; private set; }
@@ -118,7 +122,5 @@ namespace DataStructuresToolkit.LinkedLists
 
             return result.ToArray();
         }
-
-        
     }
 }
