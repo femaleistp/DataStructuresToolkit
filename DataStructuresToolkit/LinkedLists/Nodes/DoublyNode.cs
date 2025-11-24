@@ -13,7 +13,6 @@ namespace DataStructuresToolkit.LinkedLists.Nodes
         public DoublyNode<T> Prev;
         public DoublyNode<T> Next;
 
-
         /// <summary>
         /// Initializes a new instance of the DoublyNode class with the specified data.
         /// </summary>
