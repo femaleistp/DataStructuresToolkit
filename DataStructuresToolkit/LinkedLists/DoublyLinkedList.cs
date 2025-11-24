@@ -53,9 +53,32 @@ namespace DataStructuresToolkit.LinkedLists
             Tail = newNode; // Update the tail to be the new node
         }
 
+        /// <summary>
+        /// Removes the specified node from the list.
+        /// </summary>
+        /// <param name="node">The node to remove.</param>
+        /// <remarks>Complexity time O(1) and space O(1)</remarks>
         public void Remove(DoublyNode<T> node)
         {
-            // Implementation goes here
+            if (node == Head)
+            { 
+                Head = Head.Next;
+            }
+
+            if (node == Tail)
+            {
+                Tail = Tail.Prev;
+            }
+
+            if (node.Prev != null)
+            {
+                node.Prev.Next = node.Next;
+            }
+
+            if (node.Next != null)
+            {
+                node.Next.Prev = node.Prev;
+            }
         }
 
         public T[] TraverseForward()
@@ -64,6 +87,11 @@ namespace DataStructuresToolkit.LinkedLists
             return Array.Empty<T>();
         }
 
+        /// <summary>
+        /// Traverses the list from tail to head and returns an array of the data in each node.
+        /// </summary>
+        /// <returns>The array of data from the list.</returns>
+        /// <remarks>Complexity time O(n) and space O(n)</remarks>
         public T[] TraverseBackward()
         {
             var result = new List<T>();
