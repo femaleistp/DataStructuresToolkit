@@ -33,7 +33,18 @@ namespace DataStructuresToolkit.LinkedLists
 
         public void AddLast(T value)
         {
-            // Implementation goes here
+            var newNode = new DoublyNode<T>(value);
+
+            if (Head == null)
+            {
+                Head = newNode;
+                Tail = newNode;
+                return;
+            }
+
+            Tail.Next = newNode; // Link the current tail to the new node
+            newNode.Prev = Tail; // Link the new node back to the current tail
+            Tail = newNode; // Update the tail to be the new node
         }
 
         public void Remove(DoublyNode<T> node)
