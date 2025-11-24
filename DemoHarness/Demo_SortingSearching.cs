@@ -2,6 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Diagnostics;
 using DataStructuresToolkit;
+using DataStructuresToolkit.SortingSearching;
 
 namespace DemoHarness
 {

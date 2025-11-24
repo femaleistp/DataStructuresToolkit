@@ -1,5 +1,6 @@
 ﻿using System;
 using DataStructuresToolkit;
+using DataStructuresToolkit.Trees;
 
 namespace DemoHarness
 {
