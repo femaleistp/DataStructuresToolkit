@@ -81,10 +81,23 @@ namespace DataStructuresToolkit.LinkedLists
             }
         }
 
+        /// <summary>
+        /// Traverses the list from head to tail and returns an array of the data in each node.
+        /// </summary>
+        /// <returns>The array of data from the list.</returns>
+        /// <remarks>Complexity time O(n) and space O(n)</remarks>
         public T[] TraverseForward()
         {
-            // Implementation goes here
-            return Array.Empty<T>();
+            var result = new List<T>();
+            var current = Head;
+
+            while (current != null)
+            {
+                result.Add(current.Data);
+                current = current.Next;
+            }
+
+            return result.ToArray();
         }
 
         /// <summary>
