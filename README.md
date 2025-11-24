@@ -7,237 +7,292 @@ Instructor: Lenore Montalbano
 ============================================================
 
 ## Overview
-This toolkit is a collection of data structures and algorithms implemented in C Sharp to demonstrate how each structure behaves, how operations work internally, and how complexity affects performance. The project includes arrays, lists, strings, stacks, queues, recursion, sorting, searching, binary trees, BSTs, AVL trees, priority queues, simple hash tables, associative containers, and console demos. Each module includes XML documentation, validation, and complexity notes. All major components are supported with xUnit tests.
+This toolkit is a collection of data structures and algorithms implemented in C#.  
+Each module demonstrates how its underlying structure behaves, how operations work internally, and how complexity affects performance.  
+The project includes:
+
+- Arrays and lists  
+- Strings  
+- Stacks and queues  
+- Recursion  
+- Sorting and searching  
+- Binary trees, BSTs, AVL trees  
+- Priority queues  
+- Simple hash tables and associative containers  
+- Singly and doubly linked lists  
+- Console demos for each category  
+- Full xUnit test coverage
+
+All major components include XML documentation, validation logic, and clear complexity notes.
 
 ============================================================
 
 ## Project Structure
-DataStructuresToolkit contains the main library with all data structure and algorithm modules.  
-DataStructuresToolkit.Tests contains xUnit tests for verification.  
-DemoHarness contains console demos that visualize operations and show timing output.
+**DataStructuresToolkit/**  
+Main library with all data structures and algorithm modules.
+
+**DataStructuresToolkit.Tests/**  
+xUnit tests covering every major structure.
+
+**DemoHarness/**  
+Console demos that visualize behavior, order of operations, performance, and traversal output.
 
 ============================================================
 
 ## ArrayStringListHelpers
-Provides helper methods for arrays, strings, and lists based on common operations.
+Helper methods for array, string, and list manipulation.
 
-Key Methods  
-InsertIntoArray shifts elements to the right and overwrites the last slot.  
-DeleteFromArray shifts left and clears the tail.  
-ConcatenateNamesNaive joins names using string concatenation and demonstrates O(n�).  
-ConcatenateNamesBuilder joins names efficiently using StringBuilder.  
-CapitalizeEachName formats words to uppercase first letters.  
-InsertIntoList inserts items at any index in a List<int>.
+### Key Methods
+- **InsertIntoArray** — shifts elements right and overwrites tail.  
+- **DeleteFromArray** — shifts left and clears last slot.  
+- **ConcatenateNamesNaive** — O(n²) due to repeated string concatenation.  
+- **ConcatenateNamesBuilder** — O(n) using `StringBuilder`.  
+- **CapitalizeEachName** — title-cases words in a sentence.  
+- **InsertIntoList** — inserts at any index of a `List<int>`.
 
-Complexity  
-Array insert and delete are O(n) time and constant space.  
-StringBuilder concatenation is O(n).  
-List inserts in the middle are O(n).
+### Complexity
+- Array insert/delete: **O(n)**  
+- `StringBuilder` concat: **O(n)**  
+- List insert: **O(n)**  
 
 ============================================================
 
 ## ComplexityTester
 Shows constant, linear, and quadratic growth with timing output.
 
-RunConstantScenario uses n(n+1)/2 and stays O(1).  
-RunLinearScenario loops from 1 to n and is O(n).  
-RunQuadraticScenario uses nested loops and reaches O(n�).
+- **RunConstantScenario** — O(1)  
+- **RunLinearScenario** — O(n)  
+- **RunQuadraticScenario** — O(n²)  
 
-The purpose is to make growth rates visible through console timing.
+Emphasizes the visible difference in timing as `n` increases.
 
 ============================================================
 
 ## MyStack
-A generic LIFO stack with resizing.
+A generic LIFO stack with dynamic resizing.
 
-Methods  
-Push adds an item to the top and resizes when needed.  
-Pop removes and returns the top item.  
-Peek returns the top item without removing it.  
-Count returns the number of stored items.
+### Operations
+- **Push** — adds item; triggers resize if needed.  
+- **Pop** — removes and returns top item.  
+- **Peek** — views top without removing.  
+- **Count** — current elements.
 
-Complexity  
-Push and Pop are amortized O(1).  
-Resize is O(n).  
-Memory use is O(n).
+### Complexity
+- Push/Pop: **amortized O(1)**  
+- Resize: **O(n)**  
 
 ============================================================
 
 ## MyQueue
-A generic FIFO queue using a circular array with automatic resizing.
+A circular-array queue with automatic resizing.
 
-Methods  
-Enqueue adds to the back.  
-Dequeue removes from the front.  
-Peek returns the front item.  
-Count returns the number of stored items.
+### Operations
+- **Enqueue** — add to back.  
+- **Dequeue** — remove from front.  
+- **Peek** — view front.  
+- **Count** — number of items.
 
-Behavior  
-Head and tail wrap around.  
-Resize preserves order and doubles capacity.
+### Behavior
+- Head and tail wrap around.
+- Resize preserves FIFO.
 
-Complexity  
-Enqueue and Dequeue are amortized O(1).  
-Resize is O(n).
+### Complexity
+- Enqueue/Dequeue: **amortized O(1)**  
+- Resize: **O(n)**  
 
 ============================================================
 
 ## RecursionHelpers
-Three recursion examples showing mathematical, problem solving, and structural recursion.
+Three recursion examples demonstrating mathematical, structural, and directory recursion.
 
-Factorial calculates n factorial with a base case of zero.  
-IsPalindrome checks a string by comparing ends and calling recursion on the substring.  
-CountFilesRecursively walks a directory and subdirectories counting files.
+- **Factorial** — simple recursion with base case 0.  
+- **IsPalindrome** — compares ends and recurses inward.  
+- **CountFilesRecursively** — directory traversal.
 
-Complexity  
-Factorial and palindrome are O(n) time and O(n) space.  
-Directory traversal is O(n) time and O(d) space.
+### Complexity
+- Factorial: **O(n)** time, **O(n)** space  
+- Palindrome: **O(n)** time, **O(n)** space  
+- Directory traversal: **O(n)** time, **O(d)** space  
 
 ============================================================
 
 ## SortingSearchingHelpers
-Implements two sorting algorithms and two searching algorithms.
+Sorting and searching algorithms with microsecond timing.
 
-BubbleSort is quadratic and uses pairwise swaps.  
-MergeSort divides data, sorts both halves, and merges them back together.  
-LinearSearch scans from left to right.  
-BinarySearch performs logarithmic search on sorted input.
+- **BubbleSort** — O(n²)  
+- **MergeSort** — O(n log n)  
+- **LinearSearch** — O(n)  
+- **BinarySearch** — O(log n)
 
-Enhancements  
-Timing measurements use microseconds.  
-JIT warm up prevents first call timing distortion.  
-Formatting makes comparisons readable.
-
-Complexity  
-BubbleSort O(n�)  
-MergeSort O(n log n)  
-LinearSearch O(n)  
-BinarySearch O(log n)
+Includes warm-ups to remove JIT distortion.
 
 ============================================================
 
 ## TreeToolkit and TreeNode
-Provides a simple binary tree with traversal and height utilities.
+A simple binary tree supporting:
 
-Features  
-BuildTeachingTree creates a fixed structure for demonstration.  
-Inorder, Preorder, and Postorder traverse the tree.  
-Height returns the maximum depth.  
-Depth finds the level of a specific value.
+- **BuildTeachingTree**  
+- **Inorder, Preorder, Postorder**  
+- **Height**  
+- **Depth** for locating a specific value  
 
-Complexity  
-Traversal is O(n) time and O(h) space.
+### Complexity
+Traversal: **O(n)**  
+Space: **O(h)** (recursive stack)
 
 ============================================================
 
 ## Binary Search Tree (BST)
-A standard BST with integer values.
+A classic integer BST.
 
-Insert places values recursively based on ordering.  
-Contains checks for membership.  
-Height returns tree height.
+- **Insert** — recursively adds values.  
+- **Contains** — search.  
+- **Height** — returns depth.  
 
-Complexity  
-Average case O(log n) for insert and search.  
-Worst case O(n) for skewed trees.
+### Complexity
+- Average: **O(log n)**  
+- Worst-case: **O(n)** (skewed)
 
 ============================================================
 
 ## AVL Tree
-A self balancing binary search tree with rotations.
+Self-balancing BST with automatic rotations.
 
-Features  
-Insert performs standard BST insertion then checks balance.  
-Contains searches recursively.  
-PrintTree displays node values with balance factors.  
-GetHeight returns node height.  
-GetBalance calculates height differences.  
-RotateLeft and RotateRight rebalance the tree when needed.
+### Features
+- **Insert** — BST insert + rebalance.  
+- **Contains** — recursive search.  
+- **PrintTree** — prints keys with balance factors.  
+- **RotateLeft / RotateRight**  
+- **GetHeight / GetBalance**
 
-Rotation Cases  
-Left Left  
-Right Right  
-Left Right  
-Right Left  
+### Rotation Cases
+- Left Left  
+- Right Right  
+- Left Right  
+- Right Left  
 
-Complexity  
-Insert and search are O(log n).  
-Rotations are O(1).
+### Complexity
+All operations: **O(log n)**  
 
 ============================================================
 
 ## Priority Queue
-A min heap storing integers.
+A min-heap storing ints.
 
-Enqueue inserts and bubbles up the value.  
-Dequeue removes the root and bubbles down.  
-HeapifyUp and HeapifyDown keep heap order.  
-Count returns the number of items.
+### Operations
+- **Enqueue** — bubble up.  
+- **Dequeue** — bubble down.  
+- **Count** — size.
 
-Complexity  
-Insert and remove run in O(log n).  
-Space is O(n).
+### Complexity
+- Insert/remove: **O(log n)**  
+- Space: **O(n)**  
 
 ============================================================
 
 ## SimpleHashTable
-A basic hash table using chaining with List<int> buckets.
+Hash table using **chaining (List<int>)**.
 
-Insert computes key modulus bucket length and adds only if the key is not already present.  
-Contains checks whether a key exists in its mapped bucket.  
-PrintTable displays the contents of each bucket.
+- **Insert** — avoids duplicates.  
+- **Contains** — membership check.  
+- **PrintTable** — shows buckets.
 
-Complexity  
-Average case O(1) for insert and contains.  
-Worst case O(n) with many collisions.
+### Complexity
+- Average: **O(1)**  
+- Worst-case: **O(n)** (collision chain)
 
 ============================================================
 
 ## AssociativeHelpers
-Helpers showing built in containers.
+Uses built-in generic containers.
 
-BuildPhoneBook returns a Dictionary<string,string>.  
-BuildFruitSet returns a HashSet<string> and shows that duplicates are ignored.
+- **BuildPhoneBook** → `Dictionary<string,string>`  
+- **BuildFruitSet** → `HashSet<string>`  
+
+============================================================
+
+## Linked Lists (NEW)
+Full implementation of both singly and doubly linked lists.
+
+### SinglyLinkedList<T>
+- **AddFirst**  
+- **AddLast**  
+- **Contains**  
+- **Traverse**  
+
+Complexity: O(n) traversal, O(1) insert at head.
+
+### DoublyLinkedList<T>
+- **AddFirst**  
+- **AddLast**  
+- **TraverseForward / TraverseBackward**  
+- **Remove(node)** — adjusts prev/next pointers  
+
+Complexity: O(1) node removal when node reference is known.
 
 ============================================================
 
 ## DemoHarness
-Provides console demos for stacks and queues, sorting and searching, and tree operations.
+Console demos that show full behavior and timing.
 
-Demo_StacksQueues  
-Simulates undo history using MyStack and a print queue using MyQueue.  
-Includes a performance test comparing stack and queue operations.
+### Demo_StacksQueues
+- Undo stack  
+- Print queue  
+- Performance test (100,000 ops)  
 
-Demo_SortingSearching  
-Compares BubbleSort, MergeSort, LinearSearch, and BinarySearch on arrays of size 100, 1000, and 10000.  
-Outputs timing in microseconds after JIT warm up.
+### Demo_SortingSearching
+- Microsecond timing output  
+- Bubble vs Merge  
+- Linear vs Binary
 
-TreeToolkitDemo  
-Runs all tree operations, prints traversals, calculates heights, and demonstrates BST and skewed tree behavior.
+### Demo_LinkedLists (NEW)
+- SinglyLinkedList demo  
+- DoublyLinkedList demo  
+- Built-in LinkedList<T> comparison  
+
+### TreeToolkitDemo
+- Traversals  
+- BST behavior  
+- Skewed BST height demonstration  
 
 ============================================================
 
 ## Testing
-All modules are tested with xUnit.
+All modules have xUnit coverage.
 
-Tests include  
-ArrayStringListHelpers_Tests  
-ComplexityTester_Tests  
-MyStackTests  
-MyQueueTests  
-RecursionHelpersTests  
-SortingSearchingHelpers tests planned  
-TreeToolkit tests inside demos  
-Bst tests inside traversal checks  
-AvlTreeTests and AvlTreeHeightTests  
-PriorityQueueTests  
-SimpleHashTable_Tests  
-AssociativeHelpers_Tests  
+### Test Files
+- **ArrayStringListHelpers_Tests**  
+- **ComplexityTester_Tests**  
+- **MyStackTests**  
+- **MyQueueTests**  
+- **RecursionHelpersTests**  
+- **SortingSearchingHelpersTests** (timing inside demo)  
+- **Tree tests** (BST, height, traversal)  
+- **AvlTreeTests / AvlTreeHeightTests**  
+- **PriorityQueueTests**  
+- **SimpleHashTable_Tests**  
+- **AssociativeHelpers_Tests**  
+- **SinglyLinkedListTests** *(NEW)*  
+- **DoublyLinkedListTests** *(NEW)*  
 
-Test Coverage  
-Insert, delete, resizing, wraparound, negative cases, exceptions, comparisons, height validation, and balancing logic.
+Coverage includes:
+
+- Insert/delete  
+- Resizing and wraparound  
+- Negative cases  
+- Traversal sequences  
+- Balancing logic  
+- Collision chains  
+- Recursion base/error cases  
+- Linked list pointer integrity  
 
 ============================================================
 
 ## Project Reflection
-Building this toolkit helped me understand how each structure works internally and how complexity changes the performance of an operation. Implementing both naive and efficient algorithms made the differences visible, especially when timing the results in microseconds. The stack and queue demos gave me a clearer picture of how LIFO and FIFO behave in real scenarios. Recursion forced me to think in terms of base c
+Building this toolkit made complexity visible in a practical way.  
+Comparing naive and efficient approaches clarified the relationship between algorithm design and performance.  
+Stacks, queues, recursion, and trees showed how structure determines behavior, while hash tables and AVL trees demonstrated the difference between average and worst-case scenarios.  
+Adding linked lists strengthened my understanding of pointer manipulation, traversal logic, and node removal.
+
+This project now serves as a reusable reference for both academic and real-world applications.
+
