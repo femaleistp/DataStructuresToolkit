@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DataStructuresToolkit.Heap
+namespace DataStructuresToolkit.Heaps
 {
     /// <summary>
     /// A simple implementation of a priority queue using a binary heap.

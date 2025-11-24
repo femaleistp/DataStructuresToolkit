@@ -1,5 +1,6 @@
 ﻿using Xunit;
 using DataStructuresToolkit;
+using DataStructuresToolkit.Trees;
 namespace DataStructuresToolkit.Tests
 {
     [CollectionDefinition("ConsoleTests", DisableParallelization = true)]

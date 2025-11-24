@@ -1,5 +1,6 @@
 ﻿using Xunit;
 using DataStructuresToolkit;
+using DataStructuresToolkit.HashTables;
 
 namespace DataStructuresToolkit.Tests
 {

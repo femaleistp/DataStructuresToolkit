@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using DataStructuresToolkit.Complexity;
 
 namespace DataStructuresToolkit.Tests
 {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.Utilities;
 using System;
+using DataStructuresToolkit.SortingSearching;
 using Xunit;
 
 namespace DataStructuresToolkit.Tests

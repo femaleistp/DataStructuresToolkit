@@ -1,5 +1,6 @@
 ﻿using Xunit;
 using DataStructuresToolkit;
+using DataStructuresToolkit.Heaps;
 namespace DataStructuresToolkit.Tests
 {
     public class PriorityQueueTests
@@ -8,7 +9,7 @@ namespace DataStructuresToolkit.Tests
         public void EnqueueAndDequeue_ShouldReturnSmallestElement()
         {
             // Arrange
-            var pq = new PriorityQueue();
+            var pq = new DataStructuresToolkit.Heaps.PriorityQueue();
             pq.Enqueue(5); 
             pq.Enqueue(2); 
             pq.Enqueue(8);
@@ -24,7 +25,7 @@ namespace DataStructuresToolkit.Tests
         public void Enqueue_ShouldMaintainHeapProperty()
         {
             // Arrange
-            var pq = new PriorityQueue();
+            var pq = new DataStructuresToolkit.Heaps.PriorityQueue();
             pq.Enqueue(10);
             pq.Enqueue(4);
             pq.Enqueue(15);
