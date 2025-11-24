@@ -35,5 +35,21 @@ namespace DataStructuresToolkit.Tests
             // Assert
             Assert.Equal(new[] { 1, 2, 3 }, values);
         }
+
+        [Fact]
+        public void Contains_ShouldFindExistingValue()
+        {
+            // Arrange
+            var list = new SinglyLinkedList<int>();
+            list.AddLast(5);
+            list.AddLast(10);
+
+            // Act
+            var contains10 = list.Contains(10);
+
+            // Assert
+            Assert.True(contains10);  // 10 is in the list
+            Assert.False(list.Contains(15)); // 15 is not in the list
+        }
     }
 }
