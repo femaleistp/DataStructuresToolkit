@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arrays\ArrayStringListHelpers.cs" />
+    <Compile Include="Graph\GraphHelpers.cs" />
     <Compile Include="HashTables\AssociativeHelpers.cs" />
     <Compile Include="LinkedLists\DoublyLinkedList.cs" />
     <Compile Include="LinkedLists\Nodes\DoublyNode.cs" />
