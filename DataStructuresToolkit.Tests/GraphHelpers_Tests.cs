@@ -142,5 +142,24 @@ namespace DataStructuresToolkit.Tests
             // Assert
             Assert.Empty(result);
         }
+
+        [Fact]
+        public void BFS_ShouldOnlyReturnReachableVertices()
+        { 
+            // Arrange 
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C"); // unreachable
+            g.AddVertex("D"); // unreachable
+
+            g.AddEdge("A", "B");
+
+            //Act
+            var result = g.BFS("A");
+
+            // Assert
+            Assert.Equal(new List<string> { "A", "B", "C", "D" }, result);    
+        }
     }
 }
