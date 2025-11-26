@@ -3,15 +3,29 @@ using System.Collections.Generic;
 
 namespace DataStructuresToolkit.Graph
 {
+    /// <summary>
+    /// Provides helper methods for working with undirected graphs.
+    /// </summary>
     public class GraphHelpers
     {
+        /// <summary>
+        /// The adjacency list representing the graph.
+        /// </summary>
         private readonly Dictionary<string, List<string>> _adjacency;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GraphHelpers"/> class.
+        /// </summary>
         public GraphHelpers()
         {
             _adjacency = new Dictionary<string, List<string>>();
         }
 
+        /// <summary>
+        /// Adds a vertex to the graph.
+        /// </summary>
+        /// <param name="v">The vertex to add.</param>
+        /// <remarks>Complexity time O(1), space O(1)</remarks>
         public void AddVertex(string v)
         {
             if (!_adjacency.ContainsKey(v))
@@ -20,6 +34,12 @@ namespace DataStructuresToolkit.Graph
             }
         }
 
+        /// <summary>
+        /// Adds an undirected edge between two vertices.
+        /// </summary>
+        /// <param name="from">The starting vertex of the edge.</param>
+        /// <param name="to">The ending vertex of the edge.</param>
+        /// <remarks>Complexity time O(1), space O(1)</remarks>
         public void AddEdge(string from, string to)
         {
             // Ensure both vertices exist
@@ -41,6 +61,12 @@ namespace DataStructuresToolkit.Graph
             }
         }
 
+        /// <summary>
+        /// Gets the neighbors of a given vertex.
+        /// </summary>
+        /// <param name="v">The vertex whose neighbors are to be retrieved.</param>
+        /// <returns>The list of neighboring vertices.</returns>
+        /// <remarks>Complexity time O(1), space O(1)</remarks>
         public List<string> GetNeighbors(string v)
         {
             if (!_adjacency.ContainsKey(v))
@@ -51,6 +77,12 @@ namespace DataStructuresToolkit.Graph
             return _adjacency[v];
         }
 
+        /// <summary>
+        /// Performs Breadth-First Search (BFS) traversal starting from the given vertex.
+        /// </summary>
+        /// <param name="start">The starting vertex for BFS traversal.</param>
+        /// <returns>The list of vertices visited in BFS order.</returns>
+        /// <remarks>Complexity time O(V + E), space O(V)</remarks>
         public List<string> BFS(string start)
         {
             var result = new List<string>();
@@ -85,6 +117,12 @@ namespace DataStructuresToolkit.Graph
             return result;
         }
 
+        /// <summary>
+        /// Performs Depth-First Search (DFS) traversal starting from the given vertex.
+        /// </summary>
+        /// <param name="start">The starting vertex for DFS traversal.</param>
+        /// <returns>The list of vertices visited in DFS order.</returns>
+        /// <remarks>Complexity time O(V + E), space O(V)</remarks>
         public List<string> DFS(string start)
         {
             var result = new List<string>();
@@ -99,6 +137,13 @@ namespace DataStructuresToolkit.Graph
             return result;
         }
 
+        /// <summary>
+        /// Helper method for DFS traversal.
+        /// </summary>
+        /// <param name="current">The current vertex being visited.</param>
+        /// <param name="visited">The set of visited vertices.</param>
+        /// <param name="result">The list to store the traversal result.</param>
+        /// <remarks>Complexity time O(V + E), space O(V)</remarks>
         private void DFSVisit(string current, HashSet<string> visited, List<string> result)
         {
             visited.Add(current);
@@ -113,6 +158,11 @@ namespace DataStructuresToolkit.Graph
             }
         }
 
+        /// <summary>
+        /// Counts the number of edges in the undirected graph.
+        /// </summary>
+        /// <returns>The number of edges.</returns>
+        /// <remarks>Complexity time O(V + E), space O(1)</remarks>
         public int CountEdges()
         {
             int directedEdgeCount = 0;
@@ -122,6 +172,26 @@ namespace DataStructuresToolkit.Graph
             }
 
             return directedEdgeCount / 2; // Each edge counted twice
+        }
+
+        /// <summary>
+        /// Calculates the degree of each vertex in the undirected graph.
+        /// </summary>
+        /// <returns>The dictionary with vertex as key and its degree as value.</returns>
+        /// <remarks>Complexity time O(V + E), space O(V)</remarks>
+        public Dictionary<string, int> DegreeCounts()
+        {
+            var result = new Dictionary<string, int>();
+
+            foreach (var kvp in _adjacency)
+            {
+                string vertex = kvp.Key;
+                List<string> neighbors = kvp.Value;
+
+                result[vertex] = neighbors.Count;  // Degree is the count of neighbors
+            }
+
+            return result;
         }
     }
 }

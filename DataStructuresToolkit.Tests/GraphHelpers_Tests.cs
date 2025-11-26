@@ -171,6 +171,9 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(new List<string> { "A", "B" }, result);
         }
 
+        /// <summary>
+        /// Tests that DFS visits nodes in depth-first order.
+        /// </summary>
         [Fact]
         public void DFS_VisitsNodesInDepthFirstOrder()
         {
@@ -192,6 +195,9 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(new List<string> { "A", "B", "D", "C" }, result);
         }
 
+        /// <summary>
+        /// Tests that CountEdges returns the correct number of edges in an undirected graph.
+        /// </summary>
         [Fact]
         public void CountEdges_ShouldReturnCorrectUndirectedEdgeCount()
         {
@@ -209,6 +215,30 @@ namespace DataStructuresToolkit.Tests
 
             // Assert
             Assert.Equal(2, result); // A-B and B-C
+        }
+
+        /// <summary>
+        /// Tests that DegreeCounts returns correct degree counts for each vertex.
+        /// </summary>
+        [Fact]
+        public void DegreeCounts_ShouldReturnCorrectDegrees()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C");
+
+            g.AddEdge("A", "B");  // A degree 1, B degree 1
+            g.AddEdge("B", "C");  // B degree 2, C degree 1
+
+            // Act
+            var degrees = g.DegreeCounts();
+
+            // Assert
+            Assert.Equal(1, degrees["A"]);
+            Assert.Equal(2, degrees["B"]);
+            Assert.Equal(1, degrees["C"]);
         }
     }
 }
