@@ -192,23 +192,23 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(new List<string> { "A", "B", "D", "C" }, result);
         }
 
-        //[Fact]
-        //public void CountEdges_ShouldReturnCorrectUndirectedEdgeCount()
-        //{
-        //    // Arrange
-        //    var g = new GraphHelpers();
-        //    g.AddVertex("A");
-        //    g.AddVertex("B");
-        //    g.AddVertex("C");
+        [Fact]
+        public void CountEdges_ShouldReturnCorrectUndirectedEdgeCount()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C");
 
-        //    g.AddEdge("A", "B");
-        //    g.AddEdge("B", "C");
+            g.AddEdge("A", "B");
+            g.AddEdge("B", "C");
 
-        //    // Act
-        //    var result = g.CountEdges();
+            // Act
+            var result = g.CountEdges();
 
-        //    // Assert
-        //    Assert.Equal(2, result); // A-B and B-C
-        //}
+            // Assert
+            Assert.Equal(2, result); // A-B and B-C
+        }
     }
 }

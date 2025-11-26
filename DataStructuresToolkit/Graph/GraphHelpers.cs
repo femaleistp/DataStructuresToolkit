@@ -112,5 +112,16 @@ namespace DataStructuresToolkit.Graph
                 }
             }
         }
+
+        public int CountEdges()
+        {
+            int directedEdgeCount = 0;
+            foreach (var kvp in _adjacency)
+            {
+                directedEdgeCount += kvp.Value.Count;
+            }
+
+            return directedEdgeCount / 2; // Each edge counted twice
+        }
     }
 }
