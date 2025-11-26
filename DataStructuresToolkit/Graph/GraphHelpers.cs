@@ -37,8 +37,16 @@ namespace DataStructuresToolkit.Graph
 
         public List<string> BFS(string start)
         {
-            // stub (bfs requires graph with edges, none here)
-            return new List<string>();
+            var result = new List<string>();
+
+
+            if (!_adjacency.ContainsKey(start))
+            {
+                return result;
+            }
+
+            result.Add(start);
+            return result;
         }
     }
 }
