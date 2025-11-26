@@ -109,6 +109,9 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(new List<string> { "A", "B", "C" }, result);
         }
 
+        /// <summary>
+        /// Tests that adding an edge does not create duplicate entries.
+        /// </summary>
         [Fact]
         public void AddEdge_ShouldNotCreateDuplicateEntries()
         {
@@ -129,6 +132,9 @@ namespace DataStructuresToolkit.Tests
             Assert.Single(neighborsOfB, "A");
         }
 
+        /// <summary>
+        /// Tests that GetNeighbors returns an empty list for an unknown vertex.
+        /// </summary>
         [Fact]
         public void GetNeighbors_ShouldReturnEmptyList_WhenVertexUnknown()
         {
@@ -143,9 +149,12 @@ namespace DataStructuresToolkit.Tests
             Assert.Empty(result);
         }
 
+        /// <summary>
+        /// Tests that BFS only returns reachable vertices from the start vertex.
+        /// </summary>
         [Fact]
         public void BFS_ShouldOnlyReturnReachableVertices()
-        { 
+        {
             // Arrange 
             var g = new GraphHelpers();
             g.AddVertex("A");
@@ -159,7 +168,47 @@ namespace DataStructuresToolkit.Tests
             var result = g.BFS("A");
 
             // Assert
-            Assert.Equal(new List<string> { "A", "B" }, result);    
+            Assert.Equal(new List<string> { "A", "B" }, result);
         }
+
+        [Fact]
+        public void DFS_VisitsNodesInDepthFirstOrder()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C");
+            g.AddVertex("D");
+
+            g.AddEdge("A", "B");
+            g.AddEdge("A", "C");
+            g.AddEdge("B", "D");
+
+            // Act
+            var result = g.DFS("A");
+
+            // Assert
+            Assert.Equal(new List<string> { "A", "B", "D", "C" }, result);
+        }
+
+        //[Fact]
+        //public void CountEdges_ShouldReturnCorrectUndirectedEdgeCount()
+        //{
+        //    // Arrange
+        //    var g = new GraphHelpers();
+        //    g.AddVertex("A");
+        //    g.AddVertex("B");
+        //    g.AddVertex("C");
+
+        //    g.AddEdge("A", "B");
+        //    g.AddEdge("B", "C");
+
+        //    // Act
+        //    var result = g.CountEdges();
+
+        //    // Assert
+        //    Assert.Equal(2, result); // A-B and B-C
+        //}
     }
 }

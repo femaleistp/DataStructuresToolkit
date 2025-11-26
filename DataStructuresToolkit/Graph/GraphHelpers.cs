@@ -30,13 +30,13 @@ namespace DataStructuresToolkit.Graph
 
             // Add the edge in both directions for undirected graph
             if (!_adjacency[from].Contains(to))
-            { 
+            {
                 _adjacency[from].Add(to);
             }
 
             // Add the reverse edge
             if (!_adjacency[to].Contains(from))
-            { 
+            {
                 _adjacency[to].Add(from);
             }
         }
@@ -80,9 +80,37 @@ namespace DataStructuresToolkit.Graph
                         queue.Enqueue(neighbor);
                     }
                 }
-            }   
+            }
 
             return result;
+        }
+
+        public List<string> DFS(string start)
+        {
+            var result = new List<string>();
+
+            if (!_adjacency.ContainsKey(start))
+            {
+                return result;
+            }
+
+            var visited = new HashSet<string>();
+            DFSVisit(start, visited, result);
+            return result;
+        }
+
+        private void DFSVisit(string current, HashSet<string> visited, List<string> result)
+        {
+            visited.Add(current);
+            result.Add(current);
+
+            foreach (var neighbor in _adjacency[current])
+            {
+                if (!visited.Contains(neighbor))
+                {
+                    DFSVisit(neighbor, visited, result);
+                }
+            }
         }
     }
 }
