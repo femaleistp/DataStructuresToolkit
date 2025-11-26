@@ -127,7 +127,20 @@ namespace DataStructuresToolkit.Tests
 
             Assert.Single(neighborsOfA, "B");
             Assert.Single(neighborsOfB, "A");
+        }
 
+        [Fact]
+        public void GetNeighbors_ShouldReturnEmptyList_WhenVertexUnknown()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+
+            // Act
+            var result = g.GetNeighbors("Z"); // Z does not exist
+
+            // Assert
+            Assert.Null(result);
         }
     }
 }
