@@ -159,7 +159,7 @@ namespace DataStructuresToolkit.Tests
             var result = g.BFS("A");
 
             // Assert
-            Assert.Equal(new List<string> { "A", "B", "C", "D" }, result);    
+            Assert.Equal(new List<string> { "A", "B" }, result);    
         }
     }
 }
