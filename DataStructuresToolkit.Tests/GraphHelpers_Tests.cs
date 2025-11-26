@@ -61,5 +61,26 @@ namespace DataStructuresToolkit.Tests
             // Assert
             Assert.Equal(new List<string> { "A" }, result);
         }
+
+        [Fact]
+        public void BFS_VisitsNeighborsInBreadthFirstOrder()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C");
+            g.AddVertex("D");
+
+            g.AddEdge("A", "B");
+            g.AddEdge("A", "C");
+            g.AddEdge("B", "D");
+
+            // Act
+            var result = g.BFS("A");
+
+            // Assert
+            Assert.Equal(new List<string> { "A", "B", "C", "D" }, result);
+        }
     }
 }

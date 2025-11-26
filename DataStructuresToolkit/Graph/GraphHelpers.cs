@@ -39,13 +39,33 @@ namespace DataStructuresToolkit.Graph
         {
             var result = new List<string>();
 
-
+            // If the graph is empty or the start vertex does not exist, return empty list
             if (!_adjacency.ContainsKey(start))
             {
                 return result;
             }
 
-            result.Add(start);
+            var visited = new HashSet<string>();
+            var queue = new Queue<string>();
+
+            visited.Add(start);
+            queue.Enqueue(start);
+
+            while (queue.Count > 0)
+            {
+                string current = queue.Dequeue();
+                result.Add(current);
+
+                foreach (var neighbor in _adjacency[current])
+                {
+                    if (!visited.Contains(neighbor))
+                    {
+                        visited.Add(neighbor);
+                        queue.Enqueue(neighbor);
+                    }
+                }
+            }   
+
             return result;
         }
     }
