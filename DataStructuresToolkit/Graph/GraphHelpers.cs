@@ -45,7 +45,7 @@ namespace DataStructuresToolkit.Graph
         {
             if (!_adjacency.ContainsKey(v))
             {
-                return null;
+                return new List<string>();
             }
 
             return _adjacency[v];

@@ -140,7 +140,7 @@ namespace DataStructuresToolkit.Tests
             var result = g.GetNeighbors("Z"); // Z does not exist
 
             // Assert
-            Assert.Null(result);
+            Assert.Empty(result);
         }
     }
 }
