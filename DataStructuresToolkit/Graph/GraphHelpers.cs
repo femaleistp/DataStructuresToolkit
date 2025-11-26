@@ -22,8 +22,23 @@ namespace DataStructuresToolkit.Graph
 
         public void AddEdge(string from, string to)
         {
-            _adjacency[from].Add(to);
-            _adjacency[to].Add(from);
+            // Ensure both vertices exist
+            if (!_adjacency.ContainsKey(from) || !_adjacency.ContainsKey(to))
+            {
+                return;
+            }
+
+            // Add the edge in both directions for undirected graph
+            if (!_adjacency[from].Contains(to))
+            { 
+                _adjacency[from].Add(to);
+            }
+
+            // Add the reverse edge
+            if (!_adjacency[to].Contains(from))
+            { 
+                _adjacency[to].Add(from);
+            }
         }
 
         public List<string> GetNeighbors(string v)

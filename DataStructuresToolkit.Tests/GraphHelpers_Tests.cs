@@ -62,6 +62,9 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(new List<string> { "A" }, result);
         }
 
+        /// <summary>
+        /// Tests that BFS visits neighbors in breadth-first order.
+        /// </summary>
         [Fact]
         public void BFS_VisitsNeighborsInBreadthFirstOrder()
         {
@@ -81,6 +84,50 @@ namespace DataStructuresToolkit.Tests
 
             // Assert
             Assert.Equal(new List<string> { "A", "B", "C", "D" }, result);
+        }
+
+        /// <summary>
+        /// Tests that BFS does not revisit nodes in a cycle graph.
+        /// </summary>
+        [Fact]
+        public void BFS_DoesNotRevisitNodes_InCycleGraph()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C");
+
+            g.AddEdge("A", "B");
+            g.AddEdge("B", "C");
+            g.AddEdge("C", "A"); // Creates a cycle
+
+            // Act
+            var result = g.BFS("A");
+
+            // Assert
+            Assert.Equal(new List<string> { "A", "B", "C" }, result);
+        }
+
+        [Fact]
+        public void AddEdge_ShouldNotCreateDuplicateEntries()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+
+            // Act
+            g.AddEdge("A", "B");
+            g.AddEdge("A", "B"); // Adding the same edge again
+
+            // Assert
+            var neighborsOfA = g.GetNeighbors("A");
+            var neighborsOfB = g.GetNeighbors("B");
+
+            Assert.Single(neighborsOfA, "B");
+            Assert.Single(neighborsOfB, "A");
+
         }
     }
 }
