@@ -5,7 +5,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>DemoHarness.Demo_LinkedLists</StartupObject>
+    <StartupObject>DemoHarness.Demo_GraphHelpers</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
