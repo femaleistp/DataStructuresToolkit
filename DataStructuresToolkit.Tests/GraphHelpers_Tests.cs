@@ -480,5 +480,30 @@ namespace DataStructuresToolkit.Tests
             Assert.NotNull(adj);
             Assert.Empty(adj);
         }
+
+        /// <summary>
+        /// Tests that BuildAdjacencyList includes vertices with no edges.
+        /// </summary>
+        [Fact]
+        public void BuildAdjacencyList_ShouldIncludeVerticesWithNoEdges()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B"); // no edges
+
+            g.AddEdge("A", "A"); // self-loop possible but not relevant
+
+            // Act
+            var adj = g.BuildAdjacencyList();
+
+            // Assert
+            Assert.True(adj.ContainsKey("A"));
+            Assert.True(adj.ContainsKey("B"));
+
+            Assert.NotNull(adj["B"]);
+            Assert.Empty(adj["B"]); // no neighbors
+        }
+
     }
 }
