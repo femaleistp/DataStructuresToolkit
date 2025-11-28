@@ -194,6 +194,12 @@ namespace DataStructuresToolkit.Graph
             return result;
         }
 
+        /// <summary>
+        /// Performs Breadth-First Search (BFS) traversal and returns the order of visited vertices.
+        /// </summary>
+        /// <param name="start">The starting vertex for BFS traversal.</param>
+        /// <returns>The list of vertices in the order they were visited.</returns>
+        /// <remarks>Complexity time O(V + E), space O(V)</remarks>
         public List<string> OrderBFS(string start)
         { 
             var result = new List<string>();
@@ -224,6 +230,42 @@ namespace DataStructuresToolkit.Graph
                 }
             }
 
+            return result;
+        }
+
+        /// <summary>
+        /// Performs Depth-First Search (DFS) traversal and returns the order of visited vertices.
+        /// </summary>
+        /// <param name="start">The starting vertex for DFS traversal.</param>
+        /// <returns>The list of vertices in the order they were visited.</returns>
+        /// <remarks>Complexity time O(V + E), space O(V)</remarks>
+        public List<string> OrderDFS(string start)
+        {
+            var result = new List<string>();
+
+            if (!_adjacency.ContainsKey(start))
+            {
+                return result;
+            }   
+
+            var visited = new HashSet<string>();
+
+            // Local function for DFS traversal
+            void DFSVisit(string node)
+            {
+                visited.Add(node);
+                result.Add(node);
+
+                foreach(var neighbor in _adjacency[node])
+                {
+                    if (!visited.Contains(neighbor))
+                    {
+                        DFSVisit(neighbor);
+                    }
+                }
+            }
+
+            DFSVisit(start); 
             return result;
         }
     }

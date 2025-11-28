@@ -264,5 +264,28 @@ namespace DataStructuresToolkit.Tests
             // Assert
             Assert.Equal(new List<string> { "A", "B", "C", "D" }, result);
         }
+
+        [Fact]
+        public void OrderDFS_ShouldReturnDepthFirstOrder()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C");
+            g.AddVertex("D");
+            g.AddVertex("E");
+
+            g.AddEdge("A", "B");
+            g.AddEdge("A", "C");
+            g.AddEdge("B", "D");
+            g.AddEdge("C", "E");
+
+            // Act
+            var result = g.OrderDFS("A");
+
+            // Assert
+            Assert.Equal(new List<string> { "A", "B", "D", "C", "E" }, result);
+        }
     }
 }
