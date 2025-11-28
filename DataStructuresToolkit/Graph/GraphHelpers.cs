@@ -201,29 +201,29 @@ namespace DataStructuresToolkit.Graph
         /// <returns>The list of vertices in the order they were visited.</returns>
         /// <remarks>Complexity time O(V + E), space O(V)</remarks>
         public List<string> OrderBFS(string start)
-        { 
+        {
             var result = new List<string>();
 
             if (!_adjacency.ContainsKey(start))
-            { 
+            {
                 return result;
             }
 
-            var visited = new   HashSet<string>();
+            var visited = new HashSet<string>();
             var queue = new Queue<string>();
 
             visited.Add(start);
             queue.Enqueue(start);
 
-            while (queue.Count > 0) 
+            while (queue.Count > 0)
             {
-                string current = queue.Dequeue();   
+                string current = queue.Dequeue();
                 result.Add(current);
 
-                foreach (var neighbor in _adjacency[current]) 
+                foreach (var neighbor in _adjacency[current])
                 {
                     if (!visited.Contains(neighbor))
-                    { 
+                    {
                         visited.Add(neighbor);
                         queue.Enqueue(neighbor);
                     }
@@ -246,7 +246,7 @@ namespace DataStructuresToolkit.Graph
             if (!_adjacency.ContainsKey(start))
             {
                 return result;
-            }   
+            }
 
             var visited = new HashSet<string>();
 
@@ -256,7 +256,7 @@ namespace DataStructuresToolkit.Graph
                 visited.Add(node);
                 result.Add(node);
 
-                foreach(var neighbor in _adjacency[node])
+                foreach (var neighbor in _adjacency[node])
                 {
                     if (!visited.Contains(neighbor))
                     {
@@ -265,7 +265,18 @@ namespace DataStructuresToolkit.Graph
                 }
             }
 
-            DFSVisit(start); 
+            DFSVisit(start);
+            return result;
+        }
+
+        public List<string> UniqueVertices()
+        {
+            // Vertices are the dictionary keys.
+            var result = new List<string>(_adjacency.Keys);
+
+            // Ensre sorted deterministic order.
+            result.Sort();
+
             return result;
         }
     }

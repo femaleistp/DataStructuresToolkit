@@ -287,5 +287,56 @@ namespace DataStructuresToolkit.Tests
             // Assert
             Assert.Equal(new List<string> { "A", "B", "D", "C", "E" }, result);
         }
+
+        [Fact] 
+        public void DegreeCounts_ShouldReturnEmptyDictionary_WhenGraphIsEmpty()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            // Act
+            var result = g.DegreeCounts();
+            // Assert
+            Assert.NotNull(result);
+            Assert.Empty(result);
+        }
+
+        [Fact]
+        public void DegreeCounts_ShouldIncludeVErticesWithZeroDegrees()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C");  // C will remain isolated
+
+            g.AddEdge("A", "B");  // A degree 1, B degree 1
+
+            // Act
+            var result = g.DegreeCounts();
+
+            // Assert
+            Assert.Equal(1, result["A"]);
+            Assert.Equal(1, result["B"]);
+            Assert.Equal(0, result["C"]); // C should have degree 0
+
+
+        }
+
+        [Fact]
+        public void UniqueVertices_ShouldReturnAllVerticesWithoutDuplicates()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("A");  // Duplicate add should not create duplicate
+            g.AddVertex("C");
+
+            // Act
+            var result = g.UniqueVertices();
+
+            // Assert
+            Assert.Equal(new List<string> { "A", "B", "C" }, result);
+        }
     }
 }
