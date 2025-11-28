@@ -394,6 +394,9 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(new List<string> { "A" }, vertices);
         }
 
+        /// <summary>
+        /// Tests that BuildAdjacencyList returns correct adjacency lists for all vertices.
+        /// </summary>
         [Fact]
         public void BuildAdjacencyList_ShouldIncludeAllEdges()
         {
@@ -414,6 +417,25 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(new List<string> { "B", "C" }, adj["A"]);
             Assert.Equal(new List<string> { "A", "C" }, adj["B"]);
             Assert.Equal(new List<string> { "B", "A" }, adj["C"]);
+        }
+
+        [Fact]
+        public void BuildAdjacencyList_ShouldReturnDeepCopy_NotReferenceOriginalLists()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddEdge("A", "B");
+
+            // Act
+            var adj = g.BuildAdjacencyList();
+            adj["A"].Add("Z"); // Mutate returned list = should not mutate original graph
+
+            // Assert
+            Assert.DoesNotContain("Z", g.GetNeighbors("A"));
+
+
         }
     }
 }
