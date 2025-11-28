@@ -419,6 +419,9 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(new List<string> { "B", "A" }, adj["C"]);
         }
 
+        /// <summary>
+        /// Tests that BuildAdjacencyList returns a deep copy of the adjacency lists.
+        /// </summary>
         [Fact]
         public void BuildAdjacencyList_ShouldReturnDeepCopy_NotReferenceOriginalLists()
         {
@@ -434,8 +437,48 @@ namespace DataStructuresToolkit.Tests
 
             // Assert
             Assert.DoesNotContain("Z", g.GetNeighbors("A"));
+        }
 
+        /// <summary>
+        /// Tests that BuildAdjacencyList deep copies all neighbor lists.
+        /// </summary>
+        [Fact]
+        public void BuildAdjacencyList_ShouldDeepCopyAllNeighborLists()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C");
 
+            g.AddEdge("A", "B");
+            g.AddEdge("B", "C");
+
+            // Act
+            var adj = g.BuildAdjacencyList();
+
+            adj["A"].Add("X"); // Mutate returned list = should not mutate original graph
+            adj["B"].Remove("C"); // Mutate returned list = should not mutate original graph
+            // Assert - original graph should remain unchanged
+            Assert.DoesNotContain("X", g.GetNeighbors("A"));
+            Assert.Contains("C", g.GetNeighbors("B"));  // C must still be present
+        }
+
+        /// <summary>
+        /// Tests that BuildAdjacencyList returns an empty dictionary when the graph is empty.
+        /// </summary>
+        [Fact]
+        public void BuildAdjacencyList_ShouldReturnEmptyDictionary_WhenGraphIsEmpty()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+
+            // Act
+            var adj = g.BuildAdjacencyList();
+
+            // Assert
+            Assert.NotNull(adj);
+            Assert.Empty(adj);
         }
     }
 }
