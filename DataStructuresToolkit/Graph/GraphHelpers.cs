@@ -193,5 +193,38 @@ namespace DataStructuresToolkit.Graph
 
             return result;
         }
+
+        public List<string> OrderBFS(string start)
+        { 
+            var result = new List<string>();
+
+            if (!_adjacency.ContainsKey(start))
+            { 
+                return result;
+            }
+
+            var visited = new   HashSet<string>();
+            var queue = new Queue<string>();
+
+            visited.Add(start);
+            queue.Enqueue(start);
+
+            while (queue.Count > 0) 
+            {
+                string current = queue.Dequeue();   
+                result.Add(current);
+
+                foreach (var neighbor in _adjacency[current]) 
+                {
+                    if (!visited.Contains(neighbor))
+                    { 
+                        visited.Add(neighbor);
+                        queue.Enqueue(neighbor);
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 }

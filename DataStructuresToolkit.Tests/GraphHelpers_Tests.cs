@@ -240,5 +240,29 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(2, degrees["B"]);
             Assert.Equal(1, degrees["C"]);
         }
+
+        /// <summary>
+        /// Tests that OrderBFS returns vertices in breadth-first order.
+        /// </summary>
+        [Fact]
+        public void OrderBFS_ShouldReturnVerticesInBreadthFirstOrder()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C");
+            g.AddVertex("D");
+
+            g.AddEdge("A", "B");
+            g.AddEdge("A", "C");
+            g.AddEdge("B", "D");
+
+            // Act
+            var result = g.OrderBFS("A");
+
+            // Assert
+            Assert.Equal(new List<string> { "A", "B", "C", "D" }, result);
+        }
     }
 }
