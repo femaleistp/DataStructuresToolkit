@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 
 namespace DataStructuresToolkit.Graph
 {
@@ -275,6 +276,11 @@ namespace DataStructuresToolkit.Graph
             return result;
         }
 
+        /// <summary>
+        /// Gets a sorted list of unique vertices in the graph.
+        /// </summary>
+        /// <returns>The list of unique vertices.</returns>
+        /// <remarks>Complexity time O(V log V), space O(V)</remarks>
         public List<string> UniqueVertices()
         {
             // Vertices are the dictionary keys.
@@ -284,6 +290,18 @@ namespace DataStructuresToolkit.Graph
             result.Sort();
 
             return result;
+        }
+
+        public Dictionary<string, List<string>> BuildAdjacencyList()
+        {
+            var copy = new Dictionary<string, List<string>>();
+
+            foreach (var kvp in _adjacency)
+            {
+                // Deep-copy neighbors while preserving insertion order
+                copy[kvp.Key] = new List<string>(kvp.Value);
+            }
+            return copy;
         }
     }
 }

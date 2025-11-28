@@ -393,5 +393,27 @@ namespace DataStructuresToolkit.Tests
             // Assert
             Assert.Equal(new List<string> { "A" }, vertices);
         }
+
+        [Fact]
+        public void BuildAdjacencyList_ShouldIncludeAllEdges()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("A");
+            g.AddVertex("B");
+            g.AddVertex("C");
+
+            g.AddEdge("A", "B");
+            g.AddEdge("B", "C");
+            g.AddEdge("A", "C");
+
+            // Act
+            var adj = g.BuildAdjacencyList();
+
+            // Assert
+            Assert.Equal(new List<string> { "B", "C" }, adj["A"]);
+            Assert.Equal(new List<string> { "A", "C" }, adj["B"]);
+            Assert.Equal(new List<string> { "B", "A" }, adj["C"]);
+        }
     }
 }
