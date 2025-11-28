@@ -24,10 +24,16 @@ namespace DataStructuresToolkit.Graph
         /// <summary>
         /// Adds a vertex to the graph.
         /// </summary>
-        /// <param name="v">The vertex to add.</param>
+        /// <param name="v">The vertex to be added.</param>
         /// <remarks>Complexity time O(1), space O(1)</remarks>
         public void AddVertex(string v)
         {
+            // ignore null, empty or whitespace-only vertex names
+            if (string.IsNullOrWhiteSpace(v))
+            {
+                return;
+            }
+
             if (!_adjacency.ContainsKey(v))
             {
                 _adjacency[v] = new List<string>();

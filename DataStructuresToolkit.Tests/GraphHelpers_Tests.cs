@@ -265,6 +265,9 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(new List<string> { "A", "B", "C", "D" }, result);
         }
 
+        /// <summary>
+        /// Tests that OrderDFS returns vertices in depth-first order.
+        /// </summary>
         [Fact]
         public void OrderDFS_ShouldReturnDepthFirstOrder()
         {
@@ -288,6 +291,9 @@ namespace DataStructuresToolkit.Tests
             Assert.Equal(new List<string> { "A", "B", "D", "C", "E" }, result);
         }
 
+        /// <summary>
+        /// Tests that DegreeCounts returns an empty dictionary when the graph is empty.
+        /// </summary>
         [Fact] 
         public void DegreeCounts_ShouldReturnEmptyDictionary_WhenGraphIsEmpty()
         {
@@ -300,6 +306,9 @@ namespace DataStructuresToolkit.Tests
             Assert.Empty(result);
         }
 
+        /// <summary>
+        /// Tests that DegreeCounts includes vertices with zero degrees.
+        /// </summary>
         [Fact]
         public void DegreeCounts_ShouldIncludeVErticesWithZeroDegrees()
         {
@@ -322,6 +331,9 @@ namespace DataStructuresToolkit.Tests
 
         }
 
+        /// <summary>
+        /// Tests that UniqueVertices returns all vertices without duplicates.
+        /// </summary>
         [Fact]
         public void UniqueVertices_ShouldReturnAllVerticesWithoutDuplicates()
         {
@@ -337,6 +349,49 @@ namespace DataStructuresToolkit.Tests
 
             // Assert
             Assert.Equal(new List<string> { "A", "B", "C" }, result);
+        }
+
+        /// <summary>
+        /// Tests that UniqueVertices returns sorted vertices even after adding edges.
+        /// </summary>
+        [Fact]
+        public void UniqueVertices_ShouldReturnSortedVerticesEvenAfterEdges()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+            g.AddVertex("B");
+            g.AddVertex("A");
+            g.AddVertex("D");
+            g.AddVertex("C");
+
+            g.AddEdge("A", "B");
+            g.AddEdge("C", "D");
+
+            // Act
+            var result = g.UniqueVertices();
+
+            // Assert
+            Assert.Equal(new List<string> { "A", "B", "C", "D" }, result);
+        }
+
+        /// <summary>
+        /// Tests that AddVertex ignores empty or whitespace names.
+        /// </summary>
+        [Fact]
+        public void AddVertex_ShouldIgnoreEmptyOrWhiteSpaceNames()
+        {
+            // Arrange
+            var g = new GraphHelpers();
+
+            // Act
+            g.AddVertex("");  // invalid
+            g.AddVertex("   ");  // invalid
+            g.AddVertex("A");  // valid
+
+            var vertices = g.UniqueVertices();
+
+            // Assert
+            Assert.Equal(new List<string> { "A" }, vertices);
         }
     }
 }
