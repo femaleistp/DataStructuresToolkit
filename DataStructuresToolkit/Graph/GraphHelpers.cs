@@ -1,4 +1,44 @@
-﻿using System;
+﻿/*
+ * Brittany Hancock
+ * IT 415 - Data Structures and Algorithms
+ * Instructor: Lenore Montalbano
+ * November 28, 2025
+ * Project 10: Graphs, Sets, and Benchmarking
+ * 
+ * Reflection:
+ * I chose the graph feature because I had already worked on it in the 
+ * Guided Demo and Lab and had more familiarity with it. It felt 
+ * straightforward and practical. I knew it would be an extensive 
+ * project, and I wanted enough space to do thorough testing. I needed 
+ * more understanding on how to map graphs correctly and uncover edge 
+ * cases. BFS and DFS helped me see the difference between retrieving 
+ * data one layer at a time versus diving deep into the channels. It 
+ * showed me how to build little by little. I learned how to find cycles, 
+ * prevent revisits, avoid duplicate entries, handle items not in the 
+ * graph, handle unreachable vertices, count edges, count degrees, order 
+ * traversals, handle empty graphs, handle zero degrees, and build an 
+ * adjacency list without losing state.
+ * 
+ * Nothing felt surprisingly easy. The difficult part was when tests 
+ * passed that I thought would fail and figuring out why the method behaved 
+ * better than expected. Test-driven development helped me catch issues 
+ * like ignoring null empty or whitespace-only vertex names. I noticed the 
+ * difference between BFS using a queue and DFS using recursion with a 
+ * local DFSVisit.
+ * 
+ * The benchmark showed that HashSet.Contains is faster than List.Contains 
+ * because HashSet uses buckets and List takes longer.
+ * 
+ * Adding GraphHelpers improved my Capstone because it integrated queues 
+ * lists stacks HashSets complexity arrays and nodes. It made the project 
+ * feel more professional through modular design and console output. I struggled 
+ * with the size of the project and the number of edge cases. UniqueVertices 
+ * helped things click when I saw how sorting changed adjacency order. Overall 
+ * I feel satisfied with each step needed to build GraphHelpers tests and the 
+ * demo harness.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
 
