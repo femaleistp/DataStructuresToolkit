@@ -282,6 +282,15 @@ Findings:
 
 These measurements, screenshots, and profiler results are included in the Discussion 11 Showcase post.
 
+### Screenshots
+
+**BFS Timing Console Output**  
+[Week11_FinalHandoff/Week11_BFSTimingConsoleOutput_Screenshot.png](Week11_FinalHandoff/Week11_BFSTimingConsoleOutput_Screenshot.png)
+
+**Performance Profiler CPU Usage**  
+[Week11_FinalHandoff/Week11_PerformanceProfiler_Screenshot.png](Week11_FinalHandoff/Week11_PerformanceProfiler_Screenshot.png)
+
+
 ============================================================
 
 ## Project Reflection
