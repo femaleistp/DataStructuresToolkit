@@ -42,6 +42,27 @@ Includes the new Demo_GraphHelpers for this week's extension.
 
 ============================================================
 
+## Project Artifacts
+All weekly documentation, screenshots, and writeups are stored in their original week-by-week folders.  
+This preserves the progression of work across the entire quarter and aligns with Canvas weekly submissions.
+
+Included artifact folders:
+
+- Week1_Docs_AlgorithmicThinkingAndBigOAnalysis  
+- Week2_Docs_ArraysStringsLists  
+- Week3_Docs_StacksAndQueues  
+- Week4_Docs_RecursionAndRecursiveAlgorithms  
+- Week5_Docs_SearchingAndSortingAlgorithms  
+- Week7_Docs_BalancedTreesAndPriorityQueueToolkit  
+- Week8_HashTablesAndAssociativeContainers  
+- Week9_LinkedListsToolkitExtension  
+- Week10_GraphsSetsBenchmarking  
+- Week11_FinalHandoff (final screenshots + profiler output)
+
+Each folder contains any required screenshots, console outputs, Test Explorer passes, performance graphs, and week-specific reflections used throughout the project.
+
+============================================================
+
 ## How to Compile and Run the Project
 
 1. Clone the repository:
