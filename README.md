@@ -42,6 +42,36 @@ Includes the new Demo_GraphHelpers for this week's extension.
 
 ============================================================
 
+## How to Compile and Run the Project
+
+1. Clone the repository:
+   git clone https://github.com/femaleistp/DataStructuresToolkit.git
+
+2. Open the solution in Visual Studio 2022:
+   Open DataStructuresToolkit.sln from the root folder.
+
+3. Set DemoHarness as the Startup Project:
+   In Solution Explorer, right-click DemoHarness and select "Set as Startup Project".
+
+4. Select the correct Startup Object:
+   Because DemoHarness contains multiple entry points, Visual Studio requires choosing one manually.
+   Go to:
+      Project > Properties > Application > Startup object
+   Then select:
+      DemoHarness.Demo_GraphHelpers
+
+5. Build the solution:
+   Press Ctrl+Shift+B or use Build > Build Solution.
+
+6. Run the console demos:
+   Press Ctrl+F5 to run without debugging.
+
+The DemoHarness project contains all console demonstrations for the toolkit, including
+stacks, queues, sorting, linked lists, graphs, and the performance benchmarks.
+
+
+============================================================
+
 # GraphHelpers (NEW)
 Undirected graph module using adjacency lists.
 
