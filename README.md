@@ -243,6 +243,47 @@ GraphHelpers tests include:
 
 ============================================================
 
+## Performance Analysis
+
+### Stopwatch Timing: BubbleSort vs QuickSort
+A timing demo was added to the project to compare two sorting algorithms on a reversed array.  
+BubbleSort and QuickSort were measured using System.Diagnostics.Stopwatch after a JIT warm-up.
+
+Sample Output:
+```
+Bubble Sort: 591 ms
+QuickSort: 328 ms
+```
+
+This demonstrates the expected complexity difference:  
+- BubbleSort: O(n^2), significantly slower on large inputs  
+- QuickSort: O(n log n), consistently faster even on reversed arrays  
+
+### Performance Profiler Snapshot
+A CPU usage session was recorded using Visual Studio Performance Profiler.  
+The profiler shows CPU distribution across DemoHarness and GraphHelpers modules.
+
+Key profiler insights:
+- Demo_GraphHelpers.RunBenchmarkDemo used the most CPU due to large List.Contains scans.
+- BFS and DFS used very little CPU, which matches their O(V + E) complexity on a small graph.
+- No unexpected hotspots or recursion issues were found.
+
+Profiler Observation:  
+"On small graphs (5 vertices), BFS and DFS complete almost instantly and rank near the bottom of CPU usage.  
+Their cost becomes noticeable only when V and E increase, which confirms the linear-plus-edges complexity O(V + E)."
+
+### Capstone Application Summary
+Repeating these measurement techniques on the project graphs provided practical insight into performance behavior.
+
+Findings:
+- HashSet lookups stayed O(1) and always beat List.Contains.  
+- BFS and DFS scaled as expected with stable performance.  
+- Sorting demos clearly showed the difference between n^2 and n log n growth.
+
+These measurements, screenshots, and profiler results are included in the Discussion 11 Showcase post.
+
+============================================================
+
 ## Project Reflection
 Building this toolkit made complexity visible in a practical way.  
 Comparing naive and efficient approaches clarified how algorithm design relates to performance.  
