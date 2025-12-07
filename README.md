@@ -294,9 +294,6 @@ These measurements, screenshots, and profiler results are included in the Discus
 ============================================================
 
 ## Project Reflection
-Building this toolkit made complexity visible in a practical way.  
-Comparing naive and efficient approaches clarified how algorithm design relates to performance.  
-Stacks, queues, recursion, and trees showed how structure determines behavior, while hash tables and AVL trees demonstrated the difference between average and worst-case scenarios.  
-Adding linked lists strengthened my understanding of pointer manipulation and traversal logic.  
-Extending the toolkit with GraphHelpers and benchmarking deepened my understanding of adjacency lists, traversal order, and the performance gap between linear and constant-time lookups.  
-This project now serves as a reusable reference for both academic and real-world applications.
+Building this toolkit made complexity visible in a practical way. Comparing naive and efficient approaches clarified how algorithm design relates to performance. Stacks, queues, recursion, and trees showed how structure determines behavior, while hash tables and AVL trees demonstrated the difference between average and worst-case scenarios. Adding linked lists strengthened my understanding of pointer manipulation and traversal logic.
+
+Extending the toolkit with GraphHelpers and benchmarking deepened my understanding of adjacency lists, traversal order, and the performance gap between linear and constant-time lookups. Applying Stopwatch timing and the Visual Studio Performance Profiler helped me see how these structures behave under real CPU conditions, not just in theory. This project now serves as a reusable reference for both academic and real-world applications.
