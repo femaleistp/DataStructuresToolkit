@@ -9,6 +9,16 @@ namespace DemoHarness
     {
         public static void Main(string[] args)
         {
+            // --- JIT WARM-UP ---
+            {
+                var warmGraph = new GraphHelpers();
+                warmGraph.AddVertex("A");
+                warmGraph.AddVertex("B");
+                warmGraph.AddEdge("A", "B");
+                foreach (var _ in warmGraph.BFS("A")) { }
+            }
+            // --- END WARM-UP ---
+
             Console.WriteLine("=== Graph Helpers Demo ===\n");
 
             RunGraphTraversalDemo();
@@ -39,6 +49,18 @@ namespace DemoHarness
             g.AddEdge("A", "C");
             g.AddEdge("B", "D");
             g.AddEdge("C", "E");
+
+            var sw = new Stopwatch();
+
+            // --- BFS TIMING ---
+            sw.Start();
+            foreach (var v in g.BFS("A"))
+            {
+                // no-op, just enumerating
+            }
+            sw.Stop();
+            Console.WriteLine($"BFS traversal time: {sw.ElapsedTicks} ticks ({sw.ElapsedMilliseconds} ms)");
+            Console.WriteLine();
 
             Console.WriteLine("BFS from A:");
             foreach (var v in g.BFS("A"))
